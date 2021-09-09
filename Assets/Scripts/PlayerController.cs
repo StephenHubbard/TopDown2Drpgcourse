@@ -8,9 +8,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Animator myAnimator;
 
+    [SerializeField] public string areaTransitionName;
+    public static PlayerController instance;
+
     void Start()
     {
-        
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
