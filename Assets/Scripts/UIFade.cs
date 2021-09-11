@@ -11,8 +11,8 @@ public class UIFade : MonoBehaviour
 
     public static UIFade instance;
 
-    public bool shouldFadeToBlack;
-    public bool shouldFadeFromBlack;
+    private bool shouldFadeToBlack;
+    private bool shouldFadeFromBlack;
 
     private void Awake() {
         if (instance == null) {
