@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Animator myAnimator;
     [SerializeField] public string areaTransitionName;
-    public static PlayerController instance;
-
     [SerializeField] public bool canMove = true;
+
+    public static PlayerController instance;
 
     void Start()
     {
@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Movement();
+        ExitApplication();
+    }
+
+    private void Movement() {
         if (canMove) {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
         } else {
@@ -41,6 +46,12 @@ public class PlayerController : MonoBehaviour
                 myAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
                 myAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
             }
+        }
+    }
+
+    private void ExitApplication() {
+        if (Input.GetKey("escape")) {
+            Application.Quit();
         }
     }
 }

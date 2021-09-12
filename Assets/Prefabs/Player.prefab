@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477870603
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7152930139536384079, guid: e6ec641a455eb7b47ace4cd9cbe64088, type: 3}
+  m_Sprite: {fileID: 2351949810023801779, guid: 69e07f2cff29e1645ae459a657f10222, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!58 &8975110200261938388
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -100,9 +100,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.19687521}
+  m_Offset: {x: 0, y: 0.21}
   serializedVersion: 2
-  m_Radius: 0.43380678
+  m_Radius: 0.5
 --- !u!50 &8975110200261938390
 Rigidbody2D:
   serializedVersion: 4
@@ -140,6 +140,7 @@ MonoBehaviour:
   moveSpeed: 5
   myAnimator: {fileID: 8975110200261938393}
   areaTransitionName: 
+  canMove: 1
 --- !u!95 &8975110200261938393
 Animator:
   serializedVersion: 3
