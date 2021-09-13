@@ -10576,6 +10576,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1376461699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9073473780470224689, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+  m_PrefabInstance: {fileID: 9073473778644589401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1376461704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376461699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 16
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &1436767597
 GameObject:
   m_ObjectHideFlags: 0
@@ -10789,7 +10814,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526597775}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -11962,7 +11987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975110200261938389, guid: 3d547da34eefe3b46836cb17bf84a1df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.08
+      value: 12.92
       objectReference: {fileID: 0}
     - target: {fileID: 8975110200261938389, guid: 3d547da34eefe3b46836cb17bf84a1df, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12168,6 +12193,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9073473778741897281, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.0776625
+      objectReference: {fileID: 0}
     - target: {fileID: 9073473779593408150, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -12223,6 +12252,22 @@ PrefabInstance:
     - target: {fileID: 9073473780334864246, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073473780470224688, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.0278893
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073473780470224688, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012706757
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073473780470224689, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073473780470224693, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+      propertyPath: orthographic size
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
