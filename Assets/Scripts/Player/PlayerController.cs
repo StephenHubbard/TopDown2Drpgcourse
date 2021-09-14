@@ -29,11 +29,12 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         ExitApplication();
+        Attack();
     }
 
     private void Movement() {
         if (canMove) {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * moveSpeed * Time.deltaTime;
         } else {
             rb.velocity = Vector2.zero;
         }
@@ -49,9 +50,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Attack() {
+        if (Input.GetButtonDown("Fire1")) {
+            canMove = false;
+            myAnimator.SetTrigger("attack");
+        }
+    }
+
+    public void canMoveFunction() {
+        canMove = true;
+    }
+
     private void ExitApplication() {
         if (Input.GetKey("escape")) {
             Application.Quit();
         }
     }
+
 }

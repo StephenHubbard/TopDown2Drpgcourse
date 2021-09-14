@@ -171,7 +171,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.524311, y: 0.3249998}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,7 +192,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.5412147, y: 0.3308876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,7 +213,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.5412147, y: 0.3308876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,7 +234,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.5412147, y: 0.3308876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: SwordAttack_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 70
         y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.4147158, y: 0.3203435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +292,12 @@ TextureImporter:
       name: SwordAttack_6
       rect:
         serializedVersion: 2
-        x: 128
+        x: 134
         y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.4147158, y: 0.3203435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -313,12 +313,12 @@ TextureImporter:
       name: SwordAttack_7
       rect:
         serializedVersion: 2
-        x: 192
+        x: 198
         y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.325}
+      pivot: {x: 0.4147158, y: 0.3203435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
