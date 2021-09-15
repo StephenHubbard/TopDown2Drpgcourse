@@ -21,6 +21,12 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
+        ExitApplication();
+    }
+
+    private void ExitApplication() {
+        if (Input.GetKey("escape")) {
+            Application.Quit();
+        }
     }
 }

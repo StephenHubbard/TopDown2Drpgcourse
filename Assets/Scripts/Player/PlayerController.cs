@@ -10,7 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public string areaTransitionName;
     [SerializeField] public bool canMove = true;
 
+    [SerializeField] private GameObject hitBox_Top;
+    [SerializeField] private GameObject hitBox_Bottom;
+    [SerializeField] private GameObject hitBox_Left;
+    [SerializeField] private GameObject hitBox_Right;
+
     public static PlayerController instance;
+
+    Vector2 movement;
 
     void Start()
     {
@@ -27,20 +34,33 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Movement();
-        ExitApplication();
+        PlayerInput();
         Attack();
+        Run();
     }
 
-    private void Movement() {
-        if (canMove) {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * moveSpeed * Time.deltaTime;
-        } else {
-            rb.velocity = Vector2.zero;
+    private void FixedUpdate() {
+        Move();   
+    }
+
+    private void Run() {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            myAnimator.SetBool("isRunning", true);
+            moveSpeed += 4f;
         }
 
-        myAnimator.SetFloat("moveX", rb.velocity.x);
-        myAnimator.SetFloat("moveY", rb.velocity.y);
+        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            myAnimator.SetBool("isRunning", false);
+            moveSpeed -= 4f;
+        }
+    }
+
+    private void PlayerInput() {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        myAnimator.SetFloat("moveX", movement.x);
+        myAnimator.SetFloat("moveY", movement.y);
 
         if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) {
             if (canMove) {
@@ -49,6 +69,13 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void Move() {
+        if (!canMove) { return; }
+
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+    
 
     private void Attack() {
         if (Input.GetButtonDown("Fire1")) {
@@ -59,11 +86,26 @@ public class PlayerController : MonoBehaviour
 
     public void canMoveFunction() {
         canMove = true;
+
+        hitBox_Left.SetActive(false);
+        hitBox_Right.SetActive(false);
+        hitBox_Bottom.SetActive(false);
+        hitBox_Top.SetActive(false);
+
     }
 
-    private void ExitApplication() {
-        if (Input.GetKey("escape")) {
-            Application.Quit();
+    public void ActivateCollider() {
+        if (myAnimator.GetFloat("lastMoveX") == -1) {
+            hitBox_Left.SetActive(true);
+        }
+        if (myAnimator.GetFloat("lastMoveX") == 1) {
+            hitBox_Right.SetActive(true);
+        }
+        if (myAnimator.GetFloat("lastMoveY") == -1) {
+            hitBox_Bottom.SetActive(true);
+        }
+        if (myAnimator.GetFloat("lastMoveY") == 1) {
+            hitBox_Top.SetActive(true);
         }
     }
 
