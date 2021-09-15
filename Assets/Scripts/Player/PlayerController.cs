@@ -78,7 +78,9 @@ public class PlayerController : MonoBehaviour
     
 
     private void Attack() {
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && myAnimator.GetBool("isRunning") == false) {
+            //temp debug to elimate attack movement bug
+            rb.velocity = Vector2.zero;
             canMove = false;
             myAnimator.SetTrigger("attack");
         }
