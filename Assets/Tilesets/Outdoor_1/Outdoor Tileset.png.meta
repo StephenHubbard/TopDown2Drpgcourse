@@ -236,6 +236,9 @@ TextureImporter:
   - first:
       213: 8873534476979027440
     second: Outdoor Tileset_77
+  - first:
+      213: -4225716350469658998
+    second: Outdoor Tileset_78
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -280,7 +283,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1

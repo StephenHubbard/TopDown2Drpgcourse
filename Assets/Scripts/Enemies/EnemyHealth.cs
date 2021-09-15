@@ -22,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void Update() {
-        DetectDeath();
     }
 
     public void TakeDamage(int damage) {
@@ -49,5 +48,6 @@ public class EnemyHealth : MonoBehaviour
         rb.velocity = Vector2.zero;
         GetComponent<EnemyMovement>().canMove = true;
         spriteRenderer.material = matDefault;
+        DetectDeath();
     }
 }

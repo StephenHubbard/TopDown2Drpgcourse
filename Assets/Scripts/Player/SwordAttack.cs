@@ -7,7 +7,8 @@ public class SwordAttack : MonoBehaviour
     [SerializeField] private int swordDamage = 1;
     [SerializeField] private float knockbackTime;
     [SerializeField] private float thrust;
-    [SerializeField] private PlayerController player;
+    
+    private PlayerController player;
     
     private void Start() {
         player = FindObjectOfType<PlayerController>();
