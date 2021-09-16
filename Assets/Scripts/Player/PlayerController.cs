@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startingMoveSpeed;
     [SerializeField] private Animator myAnimator;
     [SerializeField] public string areaTransitionName;
-    [SerializeField] public bool canMove = true;
 
     [SerializeField] private GameObject hitBox_Top;
     [SerializeField] private GameObject hitBox_Bottom;
@@ -17,15 +16,41 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Right;
 
     public static PlayerController instance;
+    public bool canAttack = true;
+    public bool canMove = true;
 
     Vector2 movement;
 
+    private PlayerControls playerControls;
+
     private void Awake() {
-        startingMoveSpeed = moveSpeed;
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable() {
+        playerControls.Enable();
+    }
+
+    private void OnDisable() {
+        playerControls.Disable();
     }
 
     void Start()
     {
+        startingMoveSpeed = moveSpeed;
+        Singleton();
+
+        playerControls.Movement.Run.performed += _ => StartRun();
+        playerControls.Movement.Run.canceled += _ => StopRun();
+        playerControls.Combat.Attack.performed += _ => Attack();
+    }
+
+    void Update()
+    {
+        PlayerInput();
+    }
+
+    private void Singleton() {
         if (instance == null) {
             instance = this;
         } else {
@@ -33,15 +58,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
         DontDestroyOnLoad(gameObject);
-    }
-
-    void Update()
-    {
-        PlayerInput();
-        Attack();
-        Run();
     }
 
     public void SetDefaultMoveSpeed() {
@@ -53,31 +70,28 @@ public class PlayerController : MonoBehaviour
         Move();   
     }
 
-    private void Run() {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            myAnimator.SetBool("isRunning", true);
-            moveSpeed += 4f;
-        }
+    private void StartRun() {
+        myAnimator.SetBool("isRunning", true);
+        moveSpeed += 4f;
+    }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift)) {
-            myAnimator.SetBool("isRunning", false);
-            moveSpeed -= 4f;
-        }
+    private void StopRun() {
+        myAnimator.SetBool("isRunning", false);
+        moveSpeed -= 4f;
     }
 
     private void PlayerInput() {
         if (!canMove) { return; }
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement = playerControls.Movement.Move.ReadValue<Vector2>();
 
         myAnimator.SetFloat("moveX", movement.x);
         myAnimator.SetFloat("moveY", movement.y);
 
-        if(Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) {
+        if(movement.x == 1 || movement.x == -1 || movement.y == 1 || movement.y == -1) {
             if (canMove) {
-                myAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
-                myAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+                myAnimator.SetFloat("lastMoveX", movement.x);
+                myAnimator.SetFloat("lastMoveY", movement.y);
             }
         }
     }
@@ -90,8 +104,7 @@ public class PlayerController : MonoBehaviour
     
 
     private void Attack() {
-        if (Input.GetButtonDown("Fire1")) {
-            //temp debug to elimate attack movement bug
+        if (canAttack) {
             rb.velocity = Vector2.zero;
             canMove = false;
             myAnimator.SetTrigger("attack");

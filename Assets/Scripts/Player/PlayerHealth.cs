@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private int currentHealth;
+    [SerializeField] private int maxHealth;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private Material whiteFlashMat;
     [SerializeField] private float whiteFlashTime = .1f;
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private float knockBackThrust = 5f;
     [SerializeField] private float knockbackTime = .5f;
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite emptyHeart;
     
     private Material defaultMat;
     private SpriteRenderer spriteRenderer;
@@ -24,7 +29,33 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = startingHealth;
+        maxHealth = startingHealth;
         defaultMat = spriteRenderer.material;
+    }
+
+    private void Update() {
+        UpdateHearthUI();
+    }
+
+    private void UpdateHearthUI() {
+        if (currentHealth > maxHealth){
+            currentHealth = maxHealth;
+        }
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < currentHealth) {
+                hearts[i].sprite = fullHeart;
+            } else {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if(i < maxHealth) {
+                hearts[i].enabled = true;
+            } else {
+                hearts[i].enabled = false;
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other) {

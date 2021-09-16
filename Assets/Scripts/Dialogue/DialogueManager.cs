@@ -6,14 +6,14 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] public GameObject dialogueBox;
-    [SerializeField] private GameObject nameBox;
-    [SerializeField] private string[] dialogueLines;
+    public GameObject dialogueBox;
+    private TMP_Text dialogueText;
+    private TMP_Text nameText;
+    private GameObject nameBox;
+    private GameObject uiCanvas;
     [SerializeField] private int currentLine;
-    [SerializeField] private GameObject uiCanvas;
 
+    private string[] dialogueLines;
     public bool justStarted;
 
     public static DialogueManager instance;
@@ -38,27 +38,26 @@ public class DialogueManager : MonoBehaviour
             {
                 if (Input.GetButtonUp("Fire2"))
                 {
-
                     if (!justStarted)
                     {
                     currentLine++;
-
-                    if (currentLine >= dialogueLines.Length)
-                    {
-                        dialogueBox.SetActive(false);
-                        justStarted = true;
-                        PlayerController.instance.canMove = true;
-                    }
-                    else
-                    {
-                        CheckIfName();
-                        dialogueText.text = dialogueLines[currentLine];
-                    }
-                    }
-                    else
-                    {
-                    justStarted = false;
-                    }
+                        if (currentLine >= dialogueLines.Length)
+                        {
+                            dialogueBox.SetActive(false);
+                            justStarted = true;
+                            PlayerController.instance.canMove = true;
+                            PlayerController.instance.canAttack = true;
+                        }
+                        else
+                        {
+                            CheckIfName();
+                            dialogueText.text = dialogueLines[currentLine];
+                        }
+                        }
+                        else
+                        {
+                            justStarted = false;
+                        }
                 }
             }
         } else {
@@ -75,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void ShowDialogue(string[] newLines, bool isPerson) {
+        justStarted = true;
         dialogueLines = newLines;
 
         currentLine = 0;
@@ -84,7 +84,6 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive(true);
 
-        justStarted = true;
 
         nameBox.SetActive(isPerson);
 

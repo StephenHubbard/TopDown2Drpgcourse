@@ -11,16 +11,33 @@ public class DialogueActivator : MonoBehaviour
     private bool canActivate;
 
     public bool isPerson;
+    private PlayerControls playerControls;
+
+    private void Awake() {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable() {
+        playerControls.Enable();
+    }
+
+    private void OnDisable() {
+        playerControls.Disable();
+    }
 
     void Start()
     {
-        
+        playerControls.RightClick.Use.performed += _ => OpenDialogue();
     }
 
     void Update()
     {
-        if(canActivate && Input.GetButtonDown("Fire2") && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
+    }
+
+    private void OpenDialogue() {
+        if(canActivate && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
             DialogueManager.instance.ShowDialogue(lines, isPerson);
+            PlayerController.instance.canAttack = false;
         }
     }
 
