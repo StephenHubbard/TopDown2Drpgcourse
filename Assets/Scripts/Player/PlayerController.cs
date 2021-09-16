@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float startingMoveSpeed;
     [SerializeField] private Animator myAnimator;
     [SerializeField] public string areaTransitionName;
     [SerializeField] public bool canMove = true;
@@ -18,6 +19,10 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     Vector2 movement;
+
+    private void Awake() {
+        startingMoveSpeed = moveSpeed;
+    }
 
     void Start()
     {
@@ -39,6 +44,11 @@ public class PlayerController : MonoBehaviour
         Run();
     }
 
+    public void SetDefaultMoveSpeed() {
+        moveSpeed = startingMoveSpeed;
+        myAnimator.SetBool("isRunning", false);
+    }
+
     private void FixedUpdate() {
         Move();   
     }
@@ -56,6 +66,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PlayerInput() {
+        if (!canMove) { return; }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

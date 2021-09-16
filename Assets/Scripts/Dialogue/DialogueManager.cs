@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject nameBox;
     [SerializeField] private string[] dialogueLines;
     [SerializeField] private int currentLine;
+    [SerializeField] private GameObject uiCanvas;
 
     public bool justStarted;
 
@@ -21,31 +22,56 @@ public class DialogueManager : MonoBehaviour
     {
         instance = this;
 
-        // dialogueText.text = dialogueLines[currentLine];
+        uiCanvas = GameObject.Find("UI Canvas");
+        UpdateDialogueGameObjects();
     }
 
     void Update()
     {
-        if (dialogueBox.activeInHierarchy){
-            if (Input.GetButtonUp("Fire1")) {
+        ShowDialogueWindow();
+    }
 
-                if (!justStarted) {
+    private void ShowDialogueWindow()
+    {
+        if (dialogueBox != null) {
+            if (dialogueBox.activeInHierarchy)
+            {
+                if (Input.GetButtonUp("Fire2"))
+                {
+
+                    if (!justStarted)
+                    {
                     currentLine++;
 
-                    if(currentLine >= dialogueLines.Length) {
+                    if (currentLine >= dialogueLines.Length)
+                    {
                         dialogueBox.SetActive(false);
-
+                        justStarted = true;
                         PlayerController.instance.canMove = true;
-                    } else {
+                    }
+                    else
+                    {
                         CheckIfName();
-
                         dialogueText.text = dialogueLines[currentLine];
                     }
-                } else {
+                    }
+                    else
+                    {
                     justStarted = false;
+                    }
                 }
             }
+        } else {
+            UpdateDialogueGameObjects();
         }
+    }
+
+    private void UpdateDialogueGameObjects() {
+        SceneManagement sceneManagement = uiCanvas.GetComponent<SceneManagement>();
+        dialogueBox = sceneManagement.dialogueBox;
+        dialogueText = sceneManagement.dialogueText.GetComponent<TMP_Text>();
+        nameBox = sceneManagement.nameBox;
+        nameText = sceneManagement.nameText.GetComponent<TMP_Text>();
     }
 
     public void ShowDialogue(string[] newLines, bool isPerson) {

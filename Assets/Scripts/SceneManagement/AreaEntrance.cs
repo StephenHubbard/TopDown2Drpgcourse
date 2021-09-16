@@ -10,6 +10,7 @@ public class AreaEntrance : MonoBehaviour
         if (PlayerController.instance != null) {
             if (transitionName == PlayerController.instance.areaTransitionName) {
                 PlayerController.instance.transform.position = transform.position;
+                PlayerController.instance.SetDefaultMoveSpeed();
             }
         }
 
