@@ -33,8 +33,25 @@ public class PlayerHealth : MonoBehaviour
         defaultMat = spriteRenderer.material;
     }
 
+    private void Start() {
+        SetHeartsUI();
+    }
+
     private void Update() {
         UpdateHearthUI();
+    }
+
+    private void SetHeartsUI() {
+        Transform heartContainer = GameObject.Find("HeartContainer").transform;
+        
+        List<Image> allHearts = new List<Image>();
+
+        foreach (Transform child in heartContainer)
+        {
+            allHearts.Add(child.gameObject.GetComponent<Image>());
+        }
+
+        hearts = allHearts.ToArray();
     }
 
     private void UpdateHearthUI() {

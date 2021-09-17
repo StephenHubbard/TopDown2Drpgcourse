@@ -45,8 +45,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0016470226, y: 0.2429372}
-  m_Size: {x: 2.6641364, y: 1.2715002}
+  m_Offset: {x: 0.16674224, y: 0.45015395}
+  m_Size: {x: 2.994321, y: 1.6859345}
   m_Direction: 1
 --- !u!114 &697337073
 MonoBehaviour:
@@ -108,8 +108,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.737522, y: 1.209327}
-  m_Size: {x: 2.8223436, y: 1.2411284}
+  m_Offset: {x: 0.9768771, y: 1.0093995}
+  m_Size: {x: 3.4651413, y: 1.7273529}
   m_Direction: 1
 --- !u!114 &750406673
 MonoBehaviour:
@@ -171,8 +171,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4624308, y: 0.23025672}
-  m_Size: {x: 2.653302, y: 1.470383}
+  m_Offset: {x: -1.5911452, y: 0.4627256}
+  m_Size: {x: 2.8511035, y: 1.9353262}
   m_Direction: 1
 --- !u!114 &877745135
 MonoBehaviour:
@@ -234,8 +234,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011479131, y: -0.045815952}
-  m_Size: {x: 2.4934082, y: 1.2468519}
+  m_Offset: {x: -0.38151956, y: 0.256397}
+  m_Size: {x: 3.2794, y: 1.8160313}
   m_Direction: 1
 --- !u!114 &1400377046
 MonoBehaviour:
@@ -395,13 +395,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8975110200261938390}
   moveSpeed: 4
+  startingMoveSpeed: 0
   myAnimator: {fileID: 8975110200261938393}
   areaTransitionName: 
-  canMove: 1
   hitBox_Top: {fileID: 750406670}
   hitBox_Bottom: {fileID: 1400377043}
   hitBox_Left: {fileID: 877745132}
   hitBox_Right: {fileID: 697337070}
+  canAttack: 1
+  canMove: 1
 --- !u!95 &8975110200261938393
 Animator:
   serializedVersion: 3
@@ -435,9 +437,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   currentHealth: 0
+  maxHealth: 0
   myAnimator: {fileID: 8975110200261938393}
   whiteFlashMat: {fileID: 2100000, guid: 52c6cabe18a9a1d42bbf7e7ad4930379, type: 2}
   whiteFlashTime: 0.1
   damageRecoveryTime: 0.5
   knockBackThrust: 15
   knockbackTime: 0.15
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: 2a4a90d47b10503499786d5a1fc77242, type: 3}
+  emptyHeart: {fileID: 21300000, guid: 67595e8f0b5b00e49b85bb11b4df1e81, type: 3}

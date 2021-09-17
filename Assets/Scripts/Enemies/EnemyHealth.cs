@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Material matWhiteFlash;
+    [SerializeField] private GameObject deathVFX;
 
     private Material matDefault;
     SpriteRenderer spriteRenderer;
@@ -30,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void DetectDeath() {
         if (currentHealth <= 0) {
+            Instantiate(deathVFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

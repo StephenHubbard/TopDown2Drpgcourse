@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake() {
         playerControls = new PlayerControls();
+
+        Singleton();
     }
 
     private void OnEnable() {
@@ -38,7 +40,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         startingMoveSpeed = moveSpeed;
-        Singleton();
 
         playerControls.Movement.Run.performed += _ => StartRun();
         playerControls.Movement.Run.canceled += _ => StopRun();
