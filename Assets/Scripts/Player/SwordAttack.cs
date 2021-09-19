@@ -15,11 +15,21 @@ public class SwordAttack : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        EnemyAttack(other);
+        DestructibleAttack(other);
+    }
+
+    private void EnemyAttack(Collider2D other) {
         if (other.gameObject.CompareTag("Enemy")) {
             other.GetComponent<EnemyHealth>().TakeDamage(swordDamage);
             other.GetComponent<EnemyHealth>().KnockBack(knockbackTime, player.transform, thrust);
             gameObject.SetActive(false);
         }
+    }
 
+    private void DestructibleAttack(Collider2D other) {
+        if (other.gameObject.CompareTag("Destructible")) {
+            other.GetComponent<BreakablePot>().BreakPot();
+        }
     }
 }

@@ -54,6 +54,14 @@ public class PlayerHealth : MonoBehaviour
         hearts = allHearts.ToArray();
     }
 
+    private void CheckIfDeath() {
+        if (currentHealth <= 0) {
+            PlayerController.instance.canMove = false;
+            PlayerController.instance.canAttack = false;
+            myAnimator.SetTrigger("dead");
+        }
+    }
+
     private void UpdateHearthUI() {
         if (currentHealth > maxHealth){
             currentHealth = maxHealth;
@@ -79,6 +87,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage) {
             TakeDamage(1);
             KnockBack(other.gameObject.transform);
+            CheckIfDeath();
         }
     }
 
@@ -111,6 +120,8 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator KnockCo() {
         yield return new WaitForSeconds(knockbackTime);
         rb.velocity = Vector2.zero;
-        playerController.canMove = true;
+        if (currentHealth >= 1) {
+            playerController.canMove = true;
+        }
     }
 }
