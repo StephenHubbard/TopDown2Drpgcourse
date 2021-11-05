@@ -28,8 +28,8 @@ public class SwordAttack : MonoBehaviour
     }
 
     private void DestructibleAttack(Collider2D other) {
-        if (other.gameObject.CompareTag("Destructible")) {
-            other.GetComponent<BreakablePot>().BreakPot();
+        if (other.GetComponent<Breakable>()) {
+            other.GetComponent<Breakable>().BreakObject();
         }
     }
 }

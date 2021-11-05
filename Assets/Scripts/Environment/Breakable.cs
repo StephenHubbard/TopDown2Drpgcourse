@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakablePot : MonoBehaviour
+public class Breakable : MonoBehaviour
 {
 
     [SerializeField] private GameObject blue_rupee;
+    [SerializeField] public enum ObjectType {pot, bush};
+    [SerializeField] private ObjectType objectType;
 
-    public void BreakPot() {
+    public void BreakObject() {
         gameObject.GetComponent<Animator>().SetTrigger("Break");
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
@@ -15,7 +17,15 @@ public class BreakablePot : MonoBehaviour
     }
 
     private IEnumerator DelayDestroy(GameObject other) {
-        Instantiate(blue_rupee, transform.position, Quaternion.identity);
+
+        switch (objectType) {
+            case ObjectType.pot: 
+                Instantiate(blue_rupee, transform.position, Quaternion.identity);
+                break;
+            case ObjectType.bush: 
+                break; 
+        }
+
         yield return new WaitForSeconds(2f);
         Destroy(other);
     }
