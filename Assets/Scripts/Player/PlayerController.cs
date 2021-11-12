@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Left;
     [SerializeField] private GameObject hitBox_Right;
 
+    [SerializeField] private GameObject boomerangPrefab;
+
     public static PlayerController instance;
     public bool canAttack = true;
     public bool canMove = true;
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Movement.Run.performed += _ => StartRun();
         playerControls.Movement.Run.canceled += _ => StopRun();
         playerControls.Combat.Attack.performed += _ => Attack();
+        playerControls.RightClick.Use.performed += _ => UseItem();
     }
 
     void Update()
@@ -109,6 +112,29 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
             canMove = false;
             myAnimator.SetTrigger("attack");
+        }
+    }
+
+    private void UseItem() {
+        if (canAttack) {
+            rb.velocity = Vector2.zero;
+            canMove = false;
+            myAnimator.SetTrigger("useItem");
+        }
+    }
+
+    public void SpawnItem() {
+        if (myAnimator.GetFloat("lastMoveX") == 1) {
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
+        }
+        else if (myAnimator.GetFloat("lastMoveX") == -1) {
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
+        }
+        else if (myAnimator.GetFloat("lastMoveY") == 1) {
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y + 1), transform.rotation);
+        }
+        else if (myAnimator.GetFloat("lastMoveY") == -1) {
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y - 1), transform.rotation);
         }
     }
 

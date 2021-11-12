@@ -276,6 +276,7 @@ MonoBehaviour:
   hitBox_Bottom: {fileID: 3204290679261957779}
   hitBox_Left: {fileID: 3793794338662628057}
   hitBox_Right: {fileID: 3097621460701527088}
+  boomerangPrefab: {fileID: 6931813539865642202, guid: 44078b1c7ff048c40882e19941ec4a84, type: 3}
   canAttack: 1
   canMove: 1
 --- !u!95 &4623108702516294298
