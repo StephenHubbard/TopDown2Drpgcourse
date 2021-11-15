@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] public int currentRupees;
     [SerializeField] private TMP_Text rupeeText;
 
+
     public static InventoryManager instance;
 
     private void Awake() {

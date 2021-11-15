@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public bool canAttack = true;
     public bool canMove = true;
 
+    public bool itemInUse = false;
+
     Vector2 movement;
 
     private PlayerControls playerControls;
@@ -124,6 +126,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SpawnItem() {
+        if (itemInUse) { return; }
+        itemInUse = true;
+        
         if (myAnimator.GetFloat("lastMoveX") == 1) {
             Instantiate(boomerangPrefab, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
         }
@@ -131,10 +136,10 @@ public class PlayerController : MonoBehaviour
             Instantiate(boomerangPrefab, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
         }
         else if (myAnimator.GetFloat("lastMoveY") == 1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y + 1), transform.rotation);
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
         }
         else if (myAnimator.GetFloat("lastMoveY") == -1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y - 1), transform.rotation);
+            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y - 1f), transform.rotation);
         }
     }
 

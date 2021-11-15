@@ -157,6 +157,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory"",
+            ""id"": ""418dddfa-35dc-4e46-9967-9fb3a00a346d"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenInventoryContainer"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ed939b2-be43-4d32-9416-51fb9c4c94d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""02f03a4c-0815-47ae-b86f-f5c422a3de65"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventoryContainer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -171,6 +198,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // RightClick
         m_RightClick = asset.FindActionMap("RightClick", throwIfNotFound: true);
         m_RightClick_Use = m_RightClick.FindAction("Use", throwIfNotFound: true);
+        // Inventory
+        m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
+        m_Inventory_OpenInventoryContainer = m_Inventory.FindAction("OpenInventoryContainer", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -323,6 +353,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public RightClickActions @RightClick => new RightClickActions(this);
+
+    // Inventory
+    private readonly InputActionMap m_Inventory;
+    private IInventoryActions m_InventoryActionsCallbackInterface;
+    private readonly InputAction m_Inventory_OpenInventoryContainer;
+    public struct InventoryActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenInventoryContainer => m_Wrapper.m_Inventory_OpenInventoryContainer;
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterface != null)
+            {
+                @OpenInventoryContainer.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnOpenInventoryContainer;
+                @OpenInventoryContainer.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnOpenInventoryContainer;
+                @OpenInventoryContainer.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnOpenInventoryContainer;
+            }
+            m_Wrapper.m_InventoryActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenInventoryContainer.started += instance.OnOpenInventoryContainer;
+                @OpenInventoryContainer.performed += instance.OnOpenInventoryContainer;
+                @OpenInventoryContainer.canceled += instance.OnOpenInventoryContainer;
+            }
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -335,5 +398,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IRightClickActions
     {
         void OnUse(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
+        void OnOpenInventoryContainer(InputAction.CallbackContext context);
     }
 }
