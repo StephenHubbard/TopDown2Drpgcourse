@@ -27,9 +27,14 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls playerControls;
 
+
+    private enum GameState { Playing, Paused};
+    private GameState currentGameState;
+
     private void Awake() {
         playerControls = new PlayerControls();
 
+        currentGameState = GameState.Playing;
         Singleton();
     }
 
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PlayerInput() {
-        if (!canMove) { return; }
+        if (!canMove || currentGameState == GameState.Paused) { return; }
 
         movement = playerControls.Movement.Move.ReadValue<Vector2>();
 
@@ -102,6 +107,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void PauseGame() {
+        currentGameState = GameState.Paused;
+        Time.timeScale = 0f;
+    }
+
+    public void UnpauseGame() {
+        currentGameState = GameState.Playing;
+        Time.timeScale = 1f;
+    }
+
     private void Move() {
         if (!canMove) { return; }
 
@@ -110,7 +125,7 @@ public class PlayerController : MonoBehaviour
     
 
     private void Attack() {
-        if (canAttack) {
+        if (canAttack && currentGameState != GameState.Paused) {
             rb.velocity = Vector2.zero;
             canMove = false;
             myAnimator.SetTrigger("attack");
@@ -118,7 +133,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UseItem() {
-        if (canAttack) {
+        if (canAttack && currentGameState != GameState.Paused) {
             rb.velocity = Vector2.zero;
             canMove = false;
             myAnimator.SetTrigger("useItem");
