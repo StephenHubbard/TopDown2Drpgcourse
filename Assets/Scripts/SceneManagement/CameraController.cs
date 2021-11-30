@@ -55,6 +55,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void ExitApplication() {
+        // debugging purposes only
         if (Input.GetKey("escape")) {
             Application.Quit();
         }

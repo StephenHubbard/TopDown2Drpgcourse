@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-
     public enum TypeOfPickUp{Rupee, Bomb, Mask};
     public TypeOfPickUp typeOfPickUp;
 

@@ -7,10 +7,9 @@ public class DialogueActivator : MonoBehaviour
     [SerializeField] private GameObject buttonUI;
 
     public string[] lines;
+    public bool isPerson;
 
     private bool canActivate;
-
-    public bool isPerson;
     private PlayerControls playerControls;
 
     private void Awake() {

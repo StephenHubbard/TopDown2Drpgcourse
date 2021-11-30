@@ -6,18 +6,10 @@ using TMPro;
 
 public class FPSDisplay : MonoBehaviour
 {
-
     [SerializeField] private TMP_Text fpsText;
     [SerializeField] private float fpsFloat;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    // debugging purposes only
     void Update()
     {
         fpsFloat = 1 / Time.unscaledDeltaTime;

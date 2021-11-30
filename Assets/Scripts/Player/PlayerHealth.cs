@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage) {
+    public void TakeDamage(int damage) {
         spriteRenderer.material = whiteFlashMat;
         currentHealth -= damage;
         canTakeDamage = false;

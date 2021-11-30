@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class AreaEntrance : MonoBehaviour
 {
+    [SerializeField] private float moveSpeedWaitTime = .5f;
+    
     public string transitionName;
+
+    private PlayerController playerController;
+
+    private void Awake() {
+        playerController = FindObjectOfType<PlayerController>();
+    }
 
     private void Start() {
         if (PlayerController.instance != null) {
             if (transitionName == PlayerController.instance.areaTransitionName) {
                 PlayerController.instance.transform.position = transform.position;
-                PlayerController.instance.SetDefaultMoveSpeed();
+                StartCoroutine(HeroMoveDelay());
             }
         }
 
         if (UIFade.instance != null) {
             UIFade.instance.FadeFromBlack();
         }
+    }
+
+    private IEnumerator HeroMoveDelay() {
+        playerController.canMove = false;
+        yield return new WaitForSeconds(moveSpeedWaitTime);
+        playerController.canMove = true;
+        PlayerController.instance.SetDefaultMoveSpeed();
     }
 }

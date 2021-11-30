@@ -6,17 +6,18 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private int currentLine;
+
+    public static DialogueManager instance;
     public GameObject dialogueBox;
+    public bool justStarted;
+
     private TMP_Text dialogueText;
     private TMP_Text nameText;
     private GameObject nameBox;
     private GameObject uiCanvas;
-    [SerializeField] private int currentLine;
 
     private string[] dialogueLines;
-    public bool justStarted;
-
-    public static DialogueManager instance;
 
     void Start()
     {

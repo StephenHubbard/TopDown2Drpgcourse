@@ -15,11 +15,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Image activeSpriteUI;
 
     public static InventoryManager instance;
-
     public enum CurrentEquippedItem { Boomerang, Bomb, Hookshot };
-
     public CurrentEquippedItem currentEquippedItem;
-
 
     private void Awake() {
         Singleton();

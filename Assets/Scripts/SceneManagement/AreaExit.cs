@@ -15,7 +15,6 @@ public class AreaExit : MonoBehaviour
 
     private void Start() {
         theEntrance.transitionName = areaTransitionName;
-
     }
 
     private void Update() {

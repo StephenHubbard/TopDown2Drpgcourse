@@ -9,12 +9,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Animator myAnimator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    public bool canMove = true;
+
     private int xDir;
     private int yDir;
-
     private float randomNum;
-
-    public bool canMove = true;
 
     Vector2 movement;
 

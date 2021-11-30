@@ -9,32 +9,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startingMoveSpeed;
     [SerializeField] private Animator myAnimator;
     [SerializeField] public string areaTransitionName;
-
     [SerializeField] private GameObject hitBox_Top;
     [SerializeField] private GameObject hitBox_Bottom;
     [SerializeField] private GameObject hitBox_Left;
     [SerializeField] private GameObject hitBox_Right;
-
     [SerializeField] private GameObject boomerangPrefab;
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private GameObject hookshotPrefab;
-    private GameObject itemEquipped;
-
 
     public static PlayerController instance;
     public bool canAttack = true;
     public bool canMove = true;
-
     public bool itemInUse = false;
 
-    Vector2 movement;
-
-    private PlayerControls playerControls;
-
-
+    private GameObject itemEquipped;
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
     private InventoryManager inventoryManager;
+    private PlayerControls playerControls;
+
+    Vector2 movement;
 
     private void Awake() {
         playerControls = new PlayerControls();
@@ -156,14 +150,16 @@ public class PlayerController : MonoBehaviour
                 break;
             case InventoryManager.CurrentEquippedItem.Bomb:
                 itemEquipped = bombPrefab;
+                // temp line
+                itemInUse = false;
                 break;
             case InventoryManager.CurrentEquippedItem.Hookshot:
-            itemEquipped = hookshotPrefab;
+                itemEquipped = hookshotPrefab;
+                // temp line
+
+                itemInUse = false;
             break;
         }
-
-        print(itemEquipped.name);
-        print("hit");
 
         if (myAnimator.GetFloat("lastMoveX") == 1) {
             Instantiate(itemEquipped, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);

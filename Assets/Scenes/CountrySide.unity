@@ -5152,6 +5152,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7052989794357947653, guid: 6d7f5d4c86158cc43b617bb305544d92, type: 3}
   m_PrefabInstance: {fileID: 7052989794964958619}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &618417038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3097621460701527088, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+  m_PrefabInstance: {fileID: 2081786862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &618417039
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618417038}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &618417042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618417038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0
+  thrust: 0
+  isSword: 0
 --- !u!4 &631607904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3454992653054565366, guid: a18f40c9df21109468752541d9f5c150, type: 3}
@@ -5208,6 +5245,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &935631848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3793794338662628057, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+  m_PrefabInstance: {fileID: 2081786862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &935631849
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935631848}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &935631852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935631848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0
+  thrust: 0
+  isSword: 0
 --- !u!1 &943620921
 GameObject:
   m_ObjectHideFlags: 0
@@ -11828,6 +11902,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
+--- !u!1 &1391413185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4705865571609836262, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+  m_PrefabInstance: {fileID: 2081786862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1391413186
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391413185}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1391413189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391413185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0
+  thrust: 0
+  isSword: 0
 --- !u!1001 &1453726724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13118,6 +13229,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5701009228665760350, guid: 3c9432ae765409943a6a1b3dcdb93170, type: 3}
   m_PrefabInstance: {fileID: 541647620}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1893586575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3204290679261957779, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+  m_PrefabInstance: {fileID: 2081786862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1893586576
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893586575}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &1908227377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5701009228665760350, guid: 3c9432ae765409943a6a1b3dcdb93170, type: 3}
@@ -13188,11 +13320,63 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tyrion
       objectReference: {fileID: 0}
-    - target: {fileID: 4623108702516294298, guid: aed3df66be4c3c647911950749df62fe, type: 3}
-      propertyPath: m_UpdateMode
-      value: 0
+    - target: {fileID: 3986876449942411840, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: thrust
+      value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3986876449942411840, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: isSword
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986876449942411840, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: swordDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986876449942411840, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: knockbackTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034655661850775134, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: thrust
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034655661850775134, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: isSword
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034655661850775134, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: swordDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034655661850775134, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: knockbackTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483048192679122469, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: thrust
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483048192679122469, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: isSword
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483048192679122469, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: swordDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483048192679122469, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+      propertyPath: knockbackTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3173493598323048770, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 7483048192679122469, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 5034655661850775134, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 3986876449942411840, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 2649300139462119652, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 9183926027494467669, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 4333176150166178280, guid: aed3df66be4c3c647911950749df62fe, type: 3}
+    - {fileID: 8710816097551545615, guid: aed3df66be4c3c647911950749df62fe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aed3df66be4c3c647911950749df62fe, type: 3}
 --- !u!1001 &3478481236432161526
 PrefabInstance:

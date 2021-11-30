@@ -11,11 +11,9 @@ public class Boomerang : MonoBehaviour
     [SerializeField] private int boomerangDamage = 1;
     [SerializeField] private float knockbackTime = .1f;
     [SerializeField] private float thrust = 15f;
-
     [SerializeField] private bool goForward = false;
 
     private PlayerController player;
-    
     private Vector3 locationToThrow;
 
     private void Awake() {
