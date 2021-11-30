@@ -9,20 +9,24 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] public int currentRupees;
     [SerializeField] private TMP_Text rupeeText;
-
-    [SerializeField] private GameObject[] itemSlots;
     [SerializeField] private GameObject selectionBorder;
-    [SerializeField] private GameObject currentSelectedItem;
+    [SerializeField] public GameObject currentSelectedItem;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Image activeSpriteUI;
 
     public static InventoryManager instance;
 
+    public enum CurrentEquippedItem { Boomerang, Bomb, Hookshot };
+
+    public CurrentEquippedItem currentEquippedItem;
 
 
     private void Awake() {
         Singleton();
-        currentSelectedItem = itemSlots[0];
+    }
+
+    private void Start() {
+        currentEquippedItem = CurrentEquippedItem.Boomerang;
     }
 
     private void Singleton() {
@@ -42,10 +46,24 @@ public class InventoryManager : MonoBehaviour
     }
 
     private void UpdateDetectIfItemChange(){
-        if (currentSelectedItem != eventSystem.currentSelectedGameObject) {
+        if (currentSelectedItem != eventSystem.currentSelectedGameObject || currentSelectedItem == null) {
+            if (eventSystem.currentSelectedGameObject == null) {
+                eventSystem.SetSelectedGameObject(eventSystem.firstSelectedGameObject);
+            }
             currentSelectedItem = eventSystem.currentSelectedGameObject;
             selectionBorder.transform.position = currentSelectedItem.transform.position;
             activeSpriteUI.sprite = currentSelectedItem.GetComponent<Image>().sprite;
+            ChangeCurrentEquippedItem();
+        }
+    }
+
+    private void ChangeCurrentEquippedItem() {
+        if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Boomerang") {
+            currentEquippedItem = CurrentEquippedItem.Boomerang;
+        } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
+            currentEquippedItem = CurrentEquippedItem.Bomb;
+        } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Hookshot") {
+            currentEquippedItem = CurrentEquippedItem.Hookshot;
         }
     }
 

@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Right;
 
     [SerializeField] private GameObject boomerangPrefab;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject hookshotPrefab;
+    private GameObject itemEquipped;
+
 
     public static PlayerController instance;
     public bool canAttack = true;
@@ -30,9 +34,11 @@ public class PlayerController : MonoBehaviour
 
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
+    private InventoryManager inventoryManager;
 
     private void Awake() {
         playerControls = new PlayerControls();
+        inventoryManager = FindObjectOfType<InventoryManager>();
 
         currentGameState = GameState.Playing;
         Singleton();
@@ -144,17 +150,32 @@ public class PlayerController : MonoBehaviour
         if (itemInUse) { return; }
         itemInUse = true;
         
+        switch(inventoryManager.currentEquippedItem) {
+            case InventoryManager.CurrentEquippedItem.Boomerang:
+                itemEquipped = boomerangPrefab;
+                break;
+            case InventoryManager.CurrentEquippedItem.Bomb:
+                itemEquipped = bombPrefab;
+                break;
+            case InventoryManager.CurrentEquippedItem.Hookshot:
+            itemEquipped = hookshotPrefab;
+            break;
+        }
+
+        print(itemEquipped.name);
+        print("hit");
+
         if (myAnimator.GetFloat("lastMoveX") == 1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
+            Instantiate(itemEquipped, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
         }
         else if (myAnimator.GetFloat("lastMoveX") == -1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
+            Instantiate(itemEquipped, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
         }
         else if (myAnimator.GetFloat("lastMoveY") == 1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
+            Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
         }
         else if (myAnimator.GetFloat("lastMoveY") == -1) {
-            Instantiate(boomerangPrefab, new Vector2(transform.position.x, transform.position.y - 1f), transform.rotation);
+            Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y - 1f), transform.rotation);
         }
     }
 
