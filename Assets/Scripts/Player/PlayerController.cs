@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool canAttack = true;
     public bool canMove = true;
     public bool itemInUse = false;
+    public bool usingHookshot = false;
 
     private GameObject itemEquipped;
     private enum GameState { Playing, Paused};
@@ -156,7 +157,6 @@ public class PlayerController : MonoBehaviour
             case InventoryManager.CurrentEquippedItem.Hookshot:
                 itemEquipped = hookshotPrefab;
                 // temp line
-
                 itemInUse = false;
             break;
         }
@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void canMoveFunction() {
+        if (usingHookshot) {return;}
         canMove = true;
 
         hitBox_Left.SetActive(false);

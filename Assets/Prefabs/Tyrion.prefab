@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7757191622500544896}
-  - component: {fileID: 2649300139462119652}
-  - component: {fileID: 7483048192679122469}
+  - component: {fileID: 618417042}
+  - component: {fileID: 2028781572}
   m_Layer: 0
   m_Name: HitBox_Right
   m_TagString: Untagged
@@ -32,7 +32,23 @@ Transform:
   m_Father: {fileID: 2216483728089024547}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 57.18}
---- !u!70 &2649300139462119652
+--- !u!114 &618417042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3097621460701527088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0.1
+  thrust: 15
+  isSword: 1
+--- !u!70 &2028781572
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,24 +61,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16674224, y: 0.45015395}
-  m_Size: {x: 2.994321, y: 1.6859345}
+  m_Offset: {x: 0.1836815, y: 0.31767553}
+  m_Size: {x: 3.0836318, y: 1.3842266}
   m_Direction: 1
---- !u!114 &7483048192679122469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3097621460701527088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordDamage: 1
-  knockbackTime: 0.1
-  thrust: 15
 --- !u!1 &3204290679261957779
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,8 +73,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3118498589906357707}
-  - component: {fileID: 8710816097551545615}
-  - component: {fileID: 3173493598323048770}
+  - component: {fileID: 7574481556442113562}
+  - component: {fileID: 291222085}
   m_Layer: 0
   m_Name: HitBox_Bottom
   m_TagString: Untagged
@@ -88,14 +89,30 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3204290679261957779}
-  m_LocalRotation: {x: 0, y: 0, z: 0.17871635, w: 0.98390067}
+  m_LocalRotation: {x: 0, y: 0, z: 0.16788724, w: 0.9858062}
   m_LocalPosition: {x: -0.07, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2216483728089024547}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.59}
---- !u!70 &8710816097551545615
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.33}
+--- !u!114 &7574481556442113562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3204290679261957779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0.1
+  thrust: 15
+  isSword: 1
+--- !u!70 &291222085
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,24 +125,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.38151956, y: 0.256397}
-  m_Size: {x: 3.2794, y: 1.8160313}
+  m_Offset: {x: -0.24199893, y: 0.019462429}
+  m_Size: {x: 3.4442527, y: 1.3855287}
   m_Direction: 1
---- !u!114 &3173493598323048770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3204290679261957779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordDamage: 1
-  knockbackTime: 0.1
-  thrust: 15
 --- !u!1 &3220950305806715719
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +280,7 @@ MonoBehaviour:
   hitBox_Right: {fileID: 3097621460701527088}
   boomerangPrefab: {fileID: 6931813539865642202, guid: 44078b1c7ff048c40882e19941ec4a84, type: 3}
   bombPrefab: {fileID: 3738896221014978246, guid: ee5cb56f82b76d346a1f29d6b774abfc, type: 3}
-  hookshotPrefab: {fileID: 0}
+  hookshotPrefab: {fileID: 1781549429540436992, guid: 5916866cc01a7a64e8b0d09e9edd63b7, type: 3}
   canAttack: 1
   canMove: 1
   itemInUse: 0
@@ -340,8 +342,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7830957613063725179}
-  - component: {fileID: 9183926027494467669}
-  - component: {fileID: 5034655661850775134}
+  - component: {fileID: 935631852}
+  - component: {fileID: 722147203}
   m_Layer: 0
   m_Name: HitBox_Left
   m_TagString: Untagged
@@ -363,7 +365,23 @@ Transform:
   m_Father: {fileID: 2216483728089024547}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -43.29}
---- !u!70 &9183926027494467669
+--- !u!114 &935631852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793794338662628057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0.1
+  thrust: 15
+  isSword: 1
+--- !u!70 &722147203
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,24 +394,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5911452, y: 0.4627256}
-  m_Size: {x: 2.8511035, y: 1.9353262}
+  m_Offset: {x: -1.7051948, y: 0.2399085}
+  m_Size: {x: 3.221414, y: 1.6928955}
   m_Direction: 1
---- !u!114 &5034655661850775134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793794338662628057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordDamage: 1
-  knockbackTime: 0.1
-  thrust: 15
 --- !u!1 &4705865571609836262
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,8 +406,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316686291287115486}
-  - component: {fileID: 4333176150166178280}
-  - component: {fileID: 3986876449942411840}
+  - component: {fileID: 1391413189}
+  - component: {fileID: 1090611170}
   m_Layer: 0
   m_Name: HitBox_Top
   m_TagString: Untagged
@@ -426,7 +429,23 @@ Transform:
   m_Father: {fileID: 2216483728089024547}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.58}
---- !u!70 &4333176150166178280
+--- !u!114 &1391413189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705865571609836262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackTime: 0.1
+  thrust: 15
+  isSword: 1
+--- !u!70 &1090611170
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,21 +458,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.9768771, y: 1.0093995}
-  m_Size: {x: 3.4651413, y: 1.7273529}
+  m_Offset: {x: 0.7639517, y: 1.2886648}
+  m_Size: {x: 3.921702, y: 1.5724438}
   m_Direction: 1
---- !u!114 &3986876449942411840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705865571609836262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e900c5933a5af74bb0e1ba3818d9adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordDamage: 1
-  knockbackTime: 0.1
-  thrust: 15

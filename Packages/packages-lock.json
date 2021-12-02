@@ -67,9 +67,9 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.tilemap": {
-      "version": "1.0.0",
+      "version": "file:com.unity.2d.tilemap@1.0.0",
       "depth": 0,
-      "source": "builtin",
+      "source": "embedded",
       "dependencies": {}
     },
     "com.unity.2d.tilemap.extras": {

@@ -22,10 +22,6 @@ public class InventoryManager : MonoBehaviour
         Singleton();
     }
 
-    private void Start() {
-        currentEquippedItem = CurrentEquippedItem.Boomerang;
-    }
-
     private void Singleton() {
         if (instance == null) {
             instance = this;

@@ -14,7 +14,7 @@ public class Boomerang : MonoBehaviour
     [SerializeField] private bool goForward = false;
 
     private PlayerController player;
-    private Vector3 locationToThrow;
+    private Vector2 locationToThrow;
 
     private void Awake() {
         player = FindObjectOfType<PlayerController>();
