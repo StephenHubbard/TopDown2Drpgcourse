@@ -56,13 +56,13 @@ public class HookshotLineController : MonoBehaviour
             newChainHead.transform.position = lineRenderer.GetPosition(1);
             newChainHead.GetComponent<Collider2D>().enabled = false;
         } else if (didHitSolidObject == true) {
-            player.transform.position = Vector2.MoveTowards(player.transform.position, targetPos, hookshotSpeed * Time.deltaTime);
+            player.transform.position = Vector2.MoveTowards(player.transform.position, newChainHead.transform.position, hookshotSpeed * 3 * Time.deltaTime);
             lineRenderer.SetPosition(0, startPos.position);
             newChainHead.transform.position = lineRenderer.GetPosition(1);
             newChainHead.GetComponent<Collider2D>().enabled = false;
         }
 
-        if (Vector2.Distance(newChainHead.transform.position, startPos.position) < .5f && (targetLocationHit || didHitSolidObject)) {
+        if (Vector2.Distance(newChainHead.transform.position, player.transform.position) < .2f && (targetLocationHit || didHitSolidObject)) {
             player.itemInUse = false;
             player.usingHookshot = false;
             player.canMove = true;
