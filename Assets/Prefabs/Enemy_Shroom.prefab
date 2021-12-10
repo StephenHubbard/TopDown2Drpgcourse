@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4485659838217297928}
   - component: {fileID: 1526597776}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_Shroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4485659838217297938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.0935926, y: -4.002326, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 477870603
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7970909259963184619, guid: 1dbfc34af0ce95e4e8658b65eaacbef7, type: 3}
+  m_Sprite: {fileID: 616444264568852485, guid: 0f12542a968bb8c4e83d25aa8088110e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,8 +101,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000025869639, y: 0.21701029}
-  m_Size: {x: 1.0000002, y: 0.7712629}
+  m_Offset: {x: -0.21690232, y: -0.051158022}
+  m_Size: {x: 0.90535206, y: 0.90535206}
   m_Direction: 1
 --- !u!50 &4485659838217297934
 Rigidbody2D:
@@ -135,7 +135,7 @@ Animator:
   m_GameObject: {fileID: 4485659838217297938}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2257af67466a15f449866ff57e8b4250, type: 2}
+  m_Controller: {fileID: 9100000, guid: 85febc07d3ac60d46b9a9f5033031f17, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

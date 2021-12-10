@@ -19,6 +19,7 @@ public class AttackDamage : MonoBehaviour
         EnemyAttack(other);
         PlayerSelfDamage(other);
         DestructibleAttack(other);
+        Cave(other);
     }
 
     private void EnemyAttack(Collider2D other) {
@@ -42,6 +43,12 @@ public class AttackDamage : MonoBehaviour
     private void DestructibleAttack(Collider2D other) {
         if (other.GetComponent<Breakable>()) {
             other.GetComponent<Breakable>().BreakObject();
+        }
+    }
+
+    private void Cave(Collider2D other) {
+        if (other.GetComponent<Cave>()) {
+            other.GetComponent<Cave>().DestroyCave();
         }
     }
 }

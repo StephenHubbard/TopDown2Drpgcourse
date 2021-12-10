@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraContainer: {fileID: 5124208209550561629, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
   uiCanvas: {fileID: 3478481237002393700, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
-  player: {fileID: 8975110200261938387, guid: 3d547da34eefe3b46836cb17bf84a1df, type: 3}
+  player: {fileID: 3220950305806715719, guid: aed3df66be4c3c647911950749df62fe, type: 3}

@@ -18,6 +18,9 @@ public class EssentialsLoader : MonoBehaviour
         if(PlayerController.instance == null) {
             PlayerController clone = Instantiate(player).GetComponent<PlayerController>();
             PlayerController.instance = clone;
+            if (FindObjectOfType<FountainRespawn>()) {
+                clone.transform.position = FindObjectOfType<FountainRespawn>().respawnPoint.transform.position;
+            }
         }
 
         if(CameraController.instance == null) {

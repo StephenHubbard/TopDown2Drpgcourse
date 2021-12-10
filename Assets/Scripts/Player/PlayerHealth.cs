@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
             PlayerController.instance.canMove = false;
             PlayerController.instance.canAttack = false;
             myAnimator.SetTrigger("dead");
+            StartCoroutine(RespawnCo());
         }
     }
 
@@ -123,5 +125,12 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth >= 1) {
             playerController.canMove = true;
         }
+    }
+
+    private IEnumerator RespawnCo() {
+        yield return new WaitForSeconds(2f);
+        Destroy(playerController.gameObject);
+        PlayerController.instance = null;
+        SceneManager.LoadScene("Town");
     }
 }

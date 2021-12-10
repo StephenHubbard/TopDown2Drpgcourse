@@ -21,7 +21,9 @@ public class CameraController : MonoBehaviour
     }
 
     private void Start() {
-        player = PlayerController.instance.transform;
+        if (FindObjectOfType<PlayerController>()) {
+            player = PlayerController.instance.transform;
+        }
         theMap = GameObject.Find("Ground").GetComponent<Tilemap>();
 
         halfHeight = Camera.main.orthographicSize;
@@ -32,7 +34,21 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update() {
+        FindPlayer();
         ExitApplication();
+    }
+
+    private void FindPlayer() {
+        if (player == null) {
+            player = PlayerController.instance.transform;
+        }
+
+        if (theMap == null) {
+            theMap = GameObject.Find("Ground").GetComponent<Tilemap>();
+
+            bottomLeftLimit = theMap.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
+            topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
+        }
     }
 
     void LateUpdate()
