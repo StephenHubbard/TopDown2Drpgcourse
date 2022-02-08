@@ -14,8 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private int xDir;
     private int yDir;
     private float randomNum;
-
-    Vector2 movement;
+    private Vector2 movement;
 
     private void Start() {
         StartCoroutine(ChangeDirection());
@@ -25,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
         Move();
     }
 
+    // random movement around map
     private IEnumerator ChangeDirection() {
         randomNum = Random.Range(-5, 5);
         movement.x = Random.Range(-1, 2);
@@ -37,9 +37,9 @@ public class EnemyMovement : MonoBehaviour
     private void Move() {
         if (!canMove) { return; }
 
-
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
+        // can flip sprite to reduce amount of sprites & animations
         if (movement.x == -1) {
             spriteRenderer.flipX = true;
         }

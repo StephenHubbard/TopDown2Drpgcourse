@@ -23,10 +23,8 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool canTakeDamage = true;
     private Rigidbody2D rb;
-    private PlayerController playerController;
 
     private void Awake() {
-        playerController = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = startingHealth;
@@ -61,6 +59,9 @@ public class PlayerHealth : MonoBehaviour
             PlayerController.instance.canAttack = false;
             myAnimator.SetTrigger("dead");
             StartCoroutine(RespawnCo());
+        } else {
+            PlayerController.instance.canMove = true;
+            PlayerController.instance.canAttack = true;
         }
     }
 
@@ -115,21 +116,19 @@ public class PlayerHealth : MonoBehaviour
             Vector2 difference = transform.position - damageSource.position;
             difference = difference.normalized * knockBackThrust * rb.mass;
             rb.AddForce(difference, ForceMode2D.Impulse);
-            playerController.canMove = false;
+            PlayerController.instance.canMove = false;
             StartCoroutine(KnockCo());
     }
 
     private IEnumerator KnockCo() {
         yield return new WaitForSeconds(knockbackTime);
         rb.velocity = Vector2.zero;
-        if (currentHealth >= 1) {
-            playerController.canMove = true;
-        }
+        CheckIfDeath();
     }
 
     private IEnumerator RespawnCo() {
         yield return new WaitForSeconds(2f);
-        Destroy(playerController.gameObject);
+        Destroy(PlayerController.instance.gameObject);
         PlayerController.instance = null;
         SceneManager.LoadScene("Town");
     }

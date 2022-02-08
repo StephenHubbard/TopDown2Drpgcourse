@@ -11,12 +11,10 @@ public class SceneManagement : MonoBehaviour
     [SerializeField] public GameObject inventoryContainer;
 
     private PlayerControls playerControls;
-    private PlayerController playerController;
 
 
     private void Awake() {
         playerControls = new PlayerControls();
-        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void OnEnable() {
@@ -38,12 +36,12 @@ public class SceneManagement : MonoBehaviour
     private void OpenInventoryContainer() {
         if (inventoryContainer.gameObject.activeInHierarchy == false) {
             inventoryContainer.gameObject.SetActive(true);
-            playerController.PauseGame();
+            PlayerController.instance.PauseGame();
         }
 
         else if (inventoryContainer.gameObject.activeInHierarchy == true) {
             inventoryContainer.gameObject.SetActive(false);
-            playerController.UnpauseGame();
+            PlayerController.instance.UnpauseGame();
         }
     }
 }

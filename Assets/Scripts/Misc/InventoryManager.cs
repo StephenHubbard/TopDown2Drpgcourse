@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Image activeSpriteUI;
 
     public static InventoryManager instance;
-    public enum CurrentEquippedItem { Boomerang, Bomb, Hookshot };
+    public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
 
     private void Awake() {
@@ -51,13 +51,13 @@ public class InventoryManager : MonoBehaviour
     }
 
     private void ChangeCurrentEquippedItem() {
+        if (!currentSelectedItem.GetComponent<ItemDisplay>()) { return; }
+
         if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Boomerang") {
             currentEquippedItem = CurrentEquippedItem.Boomerang;
         } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
             currentEquippedItem = CurrentEquippedItem.Bomb;
-        } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Hookshot") {
-            currentEquippedItem = CurrentEquippedItem.Hookshot;
-        }
+        } 
     }
 
     private void updateSelectionBorder() {

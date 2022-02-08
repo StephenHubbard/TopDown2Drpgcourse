@@ -15,15 +15,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Right;
     [SerializeField] private GameObject boomerangPrefab;
     [SerializeField] private GameObject bombPrefab;
-    [SerializeField] private GameObject hookshotPrefab;
+    [SerializeField] private GameObject itemEquipped;
 
     public static PlayerController instance;
     public bool canAttack = true;
     public bool canMove = true;
     public bool itemInUse = false;
-    public bool usingHookshot = false;
 
-    private GameObject itemEquipped;
+
+    private bool isRunning = false;
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
     private InventoryManager inventoryManager;
@@ -73,9 +73,14 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetDefaultMoveSpeed() {
-        moveSpeed = startingMoveSpeed;
-        myAnimator.SetBool("isRunning", false);
+    public void toggleGameState() {
+        if (currentGameState == GameState.Paused) {
+            currentGameState = GameState.Playing;
+        } else {
+            myAnimator.SetFloat("moveX", 0f);
+            myAnimator.SetFloat("moveY", 0f);
+            currentGameState = GameState.Paused;
+        }
     }
 
     private void FixedUpdate() {
@@ -83,11 +88,15 @@ public class PlayerController : MonoBehaviour
     }
 
     private void StartRun() {
+        isRunning = true;
+        
         myAnimator.SetBool("isRunning", true);
         moveSpeed += 4f;
     }
 
     private void StopRun() {
+        isRunning = true;
+
         myAnimator.SetBool("isRunning", false);
         moveSpeed -= 4f;
     }
@@ -139,6 +148,7 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             myAnimator.SetTrigger("useItem");
         }
+
     }
 
     public void SpawnItem() {
@@ -151,11 +161,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case InventoryManager.CurrentEquippedItem.Bomb:
                 itemEquipped = bombPrefab;
-                // temp line
-                itemInUse = false;
-                break;
-            case InventoryManager.CurrentEquippedItem.Hookshot:
-                itemEquipped = hookshotPrefab;
                 // temp line
                 itemInUse = false;
             break;
@@ -176,7 +181,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public void canMoveFunction() {
-        if (usingHookshot) {return;}
         canMove = true;
 
         hitBox_Left.SetActive(false);

@@ -159,6 +159,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""Spacebar"",
+            ""id"": ""61639fea-9e6c-441f-ae79-406d56ae3598"",
+            ""actions"": [
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""65eb8784-f12d-4524-b674-c010bc763f80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""aacc60c2-884b-4f32-8172-08751e30cf09"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Inventory"",
             ""id"": ""418dddfa-35dc-4e46-9967-9fb3a00a346d"",
             ""actions"": [
@@ -198,6 +225,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // RightClick
         m_RightClick = asset.FindActionMap("RightClick", throwIfNotFound: true);
         m_RightClick_Use = m_RightClick.FindAction("Use", throwIfNotFound: true);
+        // Spacebar
+        m_Spacebar = asset.FindActionMap("Spacebar", throwIfNotFound: true);
+        m_Spacebar_Use = m_Spacebar.FindAction("Use", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_OpenInventoryContainer = m_Inventory.FindAction("OpenInventoryContainer", throwIfNotFound: true);
@@ -354,6 +384,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     }
     public RightClickActions @RightClick => new RightClickActions(this);
 
+    // Spacebar
+    private readonly InputActionMap m_Spacebar;
+    private ISpacebarActions m_SpacebarActionsCallbackInterface;
+    private readonly InputAction m_Spacebar_Use;
+    public struct SpacebarActions
+    {
+        private @PlayerControls m_Wrapper;
+        public SpacebarActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Use => m_Wrapper.m_Spacebar_Use;
+        public InputActionMap Get() { return m_Wrapper.m_Spacebar; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SpacebarActions set) { return set.Get(); }
+        public void SetCallbacks(ISpacebarActions instance)
+        {
+            if (m_Wrapper.m_SpacebarActionsCallbackInterface != null)
+            {
+                @Use.started -= m_Wrapper.m_SpacebarActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_SpacebarActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_SpacebarActionsCallbackInterface.OnUse;
+            }
+            m_Wrapper.m_SpacebarActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+            }
+        }
+    }
+    public SpacebarActions @Spacebar => new SpacebarActions(this);
+
     // Inventory
     private readonly InputActionMap m_Inventory;
     private IInventoryActions m_InventoryActionsCallbackInterface;
@@ -396,6 +459,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
     }
     public interface IRightClickActions
+    {
+        void OnUse(InputAction.CallbackContext context);
+    }
+    public interface ISpacebarActions
     {
         void OnUse(InputAction.CallbackContext context);
     }

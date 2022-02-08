@@ -23,7 +23,7 @@ public class AreaEntrance : MonoBehaviour
         }
 
         if (UIFade.instance != null) {
-            UIFade.instance.FadeFromBlack();
+            UIFade.instance.FadeToClear();
         }
     }
 
@@ -31,6 +31,5 @@ public class AreaEntrance : MonoBehaviour
         playerController.canMove = false;
         yield return new WaitForSeconds(moveSpeedWaitTime);
         playerController.canMove = true;
-        PlayerController.instance.SetDefaultMoveSpeed();
     }
 }

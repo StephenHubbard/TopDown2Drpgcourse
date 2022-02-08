@@ -35,7 +35,6 @@ public class CameraController : MonoBehaviour
 
     private void Update() {
         FindPlayer();
-        ExitApplication();
     }
 
     private void FindPlayer() {
@@ -70,10 +69,4 @@ public class CameraController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void ExitApplication() {
-        // debugging purposes only
-        if (Input.GetKey("escape")) {
-            Application.Quit();
-        }
-    }
 }

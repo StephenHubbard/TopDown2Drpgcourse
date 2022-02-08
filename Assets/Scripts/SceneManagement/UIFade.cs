@@ -47,7 +47,7 @@ public class UIFade : MonoBehaviour
         shouldFadeFromBlack = false;
     }
 
-    public void FadeFromBlack() {
+    public void FadeToClear() {
         shouldFadeToBlack = false;
         shouldFadeFromBlack = true;
     }

@@ -146,6 +146,33 @@
             ]
         },
         {
+            "name": "Spacebar",
+            "id": "61639fea-9e6c-441f-ae79-406d56ae3598",
+            "actions": [
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "65eb8784-f12d-4524-b674-c010bc763f80",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aacc60c2-884b-4f32-8172-08751e30cf09",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Inventory",
             "id": "418dddfa-35dc-4e46-9967-9fb3a00a346d",
             "actions": [

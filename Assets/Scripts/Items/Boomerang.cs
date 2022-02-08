@@ -28,6 +28,7 @@ public class Boomerang : MonoBehaviour
     private void FindPositionToThrow() {
         Animator playerAnimator = player.GetComponent<Animator>();
 
+        // slight offset to match player sprite animation(s).
         if (playerAnimator.GetFloat("lastMoveX") == 1) {
             locationToThrow = new Vector2(player.transform.position.x + throwDistance, player.transform.position.y);
         }
@@ -74,6 +75,7 @@ public class Boomerang : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         goForward = false;
+        // returns to player without bumping into things
         circleCollider.enabled = false;
 
         if (other.gameObject.CompareTag("Enemy")) {

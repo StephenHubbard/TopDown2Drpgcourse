@@ -26,13 +26,14 @@ public class DialogueActivator : MonoBehaviour
 
     void Start()
     {
-        playerControls.RightClick.Use.performed += _ => OpenDialogue();
+        playerControls.Spacebar.Use.performed += _ => OpenDialogue();
     }
 
     void Update()
     {
     }
 
+    // BUG: script race condition between this and playerController if player moves in between scenes but not if starting scene is in town.
     private void OpenDialogue() {
         if(canActivate && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
             DialogueManager.instance.ShowDialogue(lines, isPerson);
