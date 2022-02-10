@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
         playerControls.Movement.Run.canceled += _ => StopRun();
         playerControls.Combat.Attack.performed += _ => Attack();
         playerControls.RightClick.Use.performed += _ => UseItem();
-
     }
 
     void Update()
@@ -66,6 +65,11 @@ public class PlayerController : MonoBehaviour
             }
         }
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void DialogueStopMove() {
+        myAnimator.SetFloat("moveX", 0f);
+        myAnimator.SetFloat("moveY", 0f);
     }
 
     public void toggleGameState() {

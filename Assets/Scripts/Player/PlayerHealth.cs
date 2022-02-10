@@ -53,17 +53,7 @@ public class PlayerHealth : MonoBehaviour
         hearts = allHearts.ToArray();
     }
 
-    private void CheckIfDeath() {
-        if (currentHealth <= 0) {
-            PlayerController.instance.canMove = false;
-            PlayerController.instance.canAttack = false;
-            myAnimator.SetTrigger("dead");
-            StartCoroutine(RespawnCo());
-        } else {
-            PlayerController.instance.canMove = true;
-            PlayerController.instance.canAttack = true;
-        }
-    }
+    
 
     private void UpdateHearthUI() {
         if (currentHealth > maxHealth){
@@ -90,6 +80,18 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage) {
             TakeDamage(other.gameObject.GetComponent<EnemyMovement>().damageDoneToHero);
             KnockBack(other.gameObject.transform);
+        }
+    }
+
+    private void CheckIfDeath() {
+        if (currentHealth <= 0) {
+            PlayerController.instance.canMove = false;
+            PlayerController.instance.canAttack = false;
+            myAnimator.SetTrigger("dead");
+            StartCoroutine(RespawnCo());
+        } else {
+            PlayerController.instance.canMove = true;
+            PlayerController.instance.canAttack = true;
         }
     }
 

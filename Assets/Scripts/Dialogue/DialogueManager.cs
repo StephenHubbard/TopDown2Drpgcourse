@@ -7,15 +7,14 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private int currentLine;
+    [SerializeField] public GameObject dialogueBox;
+    [SerializeField] TMP_Text dialogueText;
+    [SerializeField] TMP_Text nameText;
+    [SerializeField] GameObject nameBox;
 
     public static DialogueManager instance;
-    public GameObject dialogueBox;
     public bool justStarted;
 
-    private TMP_Text dialogueText;
-    private TMP_Text nameText;
-    private GameObject nameBox;
-    private GameObject uiCanvas;
 
     private string[] dialogueLines;
 
@@ -23,8 +22,6 @@ public class DialogueManager : MonoBehaviour
     {
         instance = this;
 
-        uiCanvas = GameObject.Find("UI Canvas");
-        UpdateDialogueGameObjects();
     }
 
     void Update()
@@ -61,33 +58,18 @@ public class DialogueManager : MonoBehaviour
                         }
                 }
             }
-        } else {
-            UpdateDialogueGameObjects();
-        }
+        } 
     }
 
-    private void UpdateDialogueGameObjects() {
-        SceneManagement sceneManagement = uiCanvas.GetComponent<SceneManagement>();
-        dialogueBox = sceneManagement.dialogueBox;
-        dialogueText = sceneManagement.dialogueText.GetComponent<TMP_Text>();
-        nameBox = sceneManagement.nameBox;
-        nameText = sceneManagement.nameText.GetComponent<TMP_Text>();
-    }
-
+    
     public void ShowDialogue(string[] newLines, bool isPerson) {
         justStarted = true;
         dialogueLines = newLines;
-
         currentLine = 0;
-
         CheckIfName();
-
         dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive(true);
-
-
         nameBox.SetActive(isPerson);
-
         PlayerController.instance.canMove = false;
     }
 

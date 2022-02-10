@@ -35,9 +35,9 @@ public class DialogueActivator : MonoBehaviour
 
     private void OpenDialogue() {
         if(canActivate && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
-            // DialogueManager.instance.UpdateDialogueGameObjects();
             DialogueManager.instance.ShowDialogue(lines, isPerson);
             PlayerController.instance.canAttack = false;
+            PlayerController.instance.DialogueStopMove();
         }
     }
 
