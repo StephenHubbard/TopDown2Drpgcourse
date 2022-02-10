@@ -12,6 +12,8 @@ public class UIFade : MonoBehaviour
 
     private bool shouldFadeToBlack;
     private bool shouldFadeFromBlack;
+    
+    // private IEnumerator currentCo
 
     private void Awake() {
         if (instance == null) {
@@ -31,17 +33,20 @@ public class UIFade : MonoBehaviour
     
     public void FadeToBlack() 
     {
+        // StopAllCoroutines in case of overlap, stalling out the image alpha
+        StopAllCoroutines();
         StartCoroutine(Fade(fadeScreen, 1));
     }
     
     public void FadeToClear()
     {
+        StopAllCoroutines();
         StartCoroutine(Fade(fadeScreen, 0));
     }
     
     IEnumerator Fade(Image image, float targetAlpha)
     {
-        while(image.color.a != targetAlpha) // Ask Gary a work around 
+        while(!Mathf.Approximately(image.color.a, targetAlpha))
         {
             float alpha = Mathf.MoveTowards(image.color.a, targetAlpha, fadeSpeed * Time.deltaTime);
             image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);

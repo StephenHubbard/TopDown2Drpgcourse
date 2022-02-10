@@ -19,12 +19,14 @@ public class AreaEntrance : MonoBehaviour
             if (transitionName == PlayerController.instance.areaTransitionName) {
                 PlayerController.instance.transform.position = transform.position;
                 StartCoroutine(HeroMoveDelay());
+
+                if (UIFade.instance != null) {
+                    UIFade.instance.FadeToClear();
+                }
             }
         }
 
-        if (UIFade.instance != null) {
-            UIFade.instance.FadeToClear();
-        }
+        
     }
 
     private IEnumerator HeroMoveDelay() {
