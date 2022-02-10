@@ -9,12 +9,6 @@ public class AttackDamage : MonoBehaviour
     [SerializeField] private float thrust;
     [SerializeField] private bool isSword = false;
     
-    private PlayerController player;
-    
-    private void Start() {
-        player = FindObjectOfType<PlayerController>();
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
         EnemyAttack(other);
         PlayerSelfDamage(other);
@@ -25,7 +19,7 @@ public class AttackDamage : MonoBehaviour
     private void EnemyAttack(Collider2D other) {
         if (other.gameObject.CompareTag("Enemy")) {
             other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
-            other.GetComponent<EnemyHealth>().KnockBack(knockbackTime, player.transform, thrust);
+            other.GetComponent<EnemyHealth>().KnockBack(knockbackTime, PlayerController.instance.transform, thrust);
             if (isSword) {
                 gameObject.SetActive(false);
             }

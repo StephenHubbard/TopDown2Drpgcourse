@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public int damageDoneToHero = 1;
 
     public bool canMove = true;
 

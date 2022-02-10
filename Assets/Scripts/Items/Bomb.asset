@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   itemType: Bomb
+  useItemPrefab: {fileID: 3738896221014978246, guid: ee5cb56f82b76d346a1f29d6b774abfc, type: 3}

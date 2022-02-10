@@ -6,16 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float startingMoveSpeed;
+    [SerializeField] private float runSpeed = 4f;
     [SerializeField] private Animator myAnimator;
     [SerializeField] public string areaTransitionName;
     [SerializeField] private GameObject hitBox_Top;
     [SerializeField] private GameObject hitBox_Bottom;
     [SerializeField] private GameObject hitBox_Left;
     [SerializeField] private GameObject hitBox_Right;
-    [SerializeField] private GameObject boomerangPrefab;
-    [SerializeField] private GameObject bombPrefab;
-    [SerializeField] private GameObject itemEquipped;
+    [SerializeField] public GameObject boomerangPrefab;
+    [SerializeField] public GameObject bombPrefab;
+    [SerializeField] public GameObject itemEquipped;
 
     public static PlayerController instance;
     public bool canAttack = true;
@@ -26,14 +26,12 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
-    private InventoryManager inventoryManager;
     private PlayerControls playerControls;
 
     Vector2 movement;
 
     private void Awake() {
         playerControls = new PlayerControls();
-        inventoryManager = FindObjectOfType<InventoryManager>();
 
         currentGameState = GameState.Playing;
         Singleton();
@@ -49,12 +47,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        startingMoveSpeed = moveSpeed;
-
         playerControls.Movement.Run.performed += _ => StartRun();
         playerControls.Movement.Run.canceled += _ => StopRun();
         playerControls.Combat.Attack.performed += _ => Attack();
         playerControls.RightClick.Use.performed += _ => UseItem();
+
     }
 
     void Update()
@@ -91,14 +88,14 @@ public class PlayerController : MonoBehaviour
         isRunning = true;
         
         myAnimator.SetBool("isRunning", true);
-        moveSpeed += 4f;
+        moveSpeed += runSpeed;
     }
 
     private void StopRun() {
         isRunning = true;
 
         myAnimator.SetBool("isRunning", false);
-        moveSpeed -= 4f;
+        moveSpeed -= runSpeed;
     }
 
     private void PlayerInput() {
@@ -153,17 +150,13 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnItem() {
         if (itemInUse) { return; }
+
         itemInUse = true;
-        
-        switch(inventoryManager.currentEquippedItem) {
-            case InventoryManager.CurrentEquippedItem.Boomerang:
-                itemEquipped = boomerangPrefab;
-                break;
-            case InventoryManager.CurrentEquippedItem.Bomb:
-                itemEquipped = bombPrefab;
-                // temp line
-                itemInUse = false;
-            break;
+
+        itemEquipped = InventoryManager.instance.itemEquippedInv;
+
+        if (itemEquipped == bombPrefab) {
+            itemInUse = false;
         }
 
         if (myAnimator.GetFloat("lastMoveX") == 1) {

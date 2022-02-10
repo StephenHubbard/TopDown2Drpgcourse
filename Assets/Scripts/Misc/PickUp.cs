@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public enum TypeOfPickUp{Rupee, Bomb, Mask};
+    // Keeping Bomb as placeholder if you wanted to implement something like item limited amounts 
+    public enum TypeOfPickUp{Rupee, Bomb};
     public TypeOfPickUp typeOfPickUp;
 
     private void OnTriggerEnter2D(Collider2D other) {

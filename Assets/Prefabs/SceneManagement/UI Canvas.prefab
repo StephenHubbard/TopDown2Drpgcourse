@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 669464413}
   - component: {fileID: 669464415}
   m_Layer: 5
-  m_Name: Hookshot
+  m_Name: Placeholder_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,8 +643,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -164, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -151.0721, y: -33.5463}
+  m_SizeDelta: {x: 74.1443, y: 67.0927}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &770904824
 GameObject:
@@ -2076,10 +2076,10 @@ RectTransform:
   m_Father: {fileID: 700557130}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 25}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1590105967
 CanvasRenderer:
@@ -2109,7 +2109,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1e7cbee259081f4984a1366bb871b30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89380af56340c5a40b24692685cf5c19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3037,7 +3037,6 @@ MonoBehaviour:
   dialogueText: {fileID: 1583575459}
   nameBox: {fileID: 1445953629}
   nameText: {fileID: 2146965201}
-  inventoryContainer: {fileID: 502501940}
 --- !u!114 &1540238765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,4 +3070,8 @@ MonoBehaviour:
   currentSelectedItem: {fileID: 0}
   eventSystem: {fileID: 1247300986}
   activeSpriteUI: {fileID: 1090950058}
-  currentEquippedItem: 0
+  inventoryContainer: {fileID: 502501940}
+  boomerangPrefabInv: {fileID: 6931813539865642202, guid: 44078b1c7ff048c40882e19941ec4a84, type: 3}
+  bombPrefabInv: {fileID: 3738896221014978246, guid: ee5cb56f82b76d346a1f29d6b774abfc, type: 3}
+  itemEquippedInv: {fileID: 0}
+  currentEquippedItem: 2

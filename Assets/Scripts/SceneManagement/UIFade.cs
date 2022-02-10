@@ -25,30 +25,27 @@ public class UIFade : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update() {
-        if (shouldFadeToBlack) {
-            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 1f, fadeSpeed * Time.deltaTime));
-            if (fadeScreen.color.a == 1f) {
-                shouldFadeToBlack = false;
-            }
-        }
-
-        if (shouldFadeFromBlack) {
-            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 0f, fadeSpeed * Time.deltaTime));
-            
-            if (fadeScreen.color.a == 0f) {
-                shouldFadeFromBlack = false;
-            }
-        }
+    void Start() {
+        FadeToClear();
     }
-
-    public void FadeToBlack() {
-        shouldFadeToBlack = true;
-        shouldFadeFromBlack = false;
+    
+    public void FadeToBlack() 
+    {
+        StartCoroutine(Fade(fadeScreen, 1));
     }
-
-    public void FadeToClear() {
-        shouldFadeToBlack = false;
-        shouldFadeFromBlack = true;
+    
+    public void FadeToClear()
+    {
+        StartCoroutine(Fade(fadeScreen, 0));
+    }
+    
+    IEnumerator Fade(Image image, float targetAlpha)
+    {
+        while(image.color.a != targetAlpha) // Ask Gary a work around 
+        {
+            float alpha = Mathf.MoveTowards(image.color.a, targetAlpha, fadeSpeed * Time.deltaTime);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

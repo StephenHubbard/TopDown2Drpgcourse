@@ -33,9 +33,9 @@ public class DialogueActivator : MonoBehaviour
     {
     }
 
-    // BUG: script race condition between this and playerController if player moves in between scenes but not if starting scene is in town.
     private void OpenDialogue() {
         if(canActivate && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
+            // DialogueManager.instance.UpdateDialogueGameObjects();
             DialogueManager.instance.ShowDialogue(lines, isPerson);
             PlayerController.instance.canAttack = false;
         }

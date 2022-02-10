@@ -88,9 +88,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other) {
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage) {
-            TakeDamage(1);
+            TakeDamage(other.gameObject.GetComponent<EnemyMovement>().damageDoneToHero);
             KnockBack(other.gameObject.transform);
-            CheckIfDeath();
         }
     }
 
@@ -113,11 +112,11 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void KnockBack(Transform damageSource) {
-            Vector2 difference = transform.position - damageSource.position;
-            difference = difference.normalized * knockBackThrust * rb.mass;
-            rb.AddForce(difference, ForceMode2D.Impulse);
-            PlayerController.instance.canMove = false;
-            StartCoroutine(KnockCo());
+        Vector2 difference = transform.position - damageSource.position;
+        difference = difference.normalized * knockBackThrust * rb.mass;
+        rb.AddForce(difference, ForceMode2D.Impulse);
+        PlayerController.instance.canMove = false;
+        StartCoroutine(KnockCo());
     }
 
     private IEnumerator KnockCo() {

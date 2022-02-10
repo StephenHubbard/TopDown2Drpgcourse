@@ -37,6 +37,17 @@ public class CameraController : MonoBehaviour
         FindPlayer();
     }
 
+    private void Singleton() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            if (instance != this) {
+                Destroy(gameObject);
+            }
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void FindPlayer() {
         if (player == null) {
             player = PlayerController.instance.transform;
@@ -54,19 +65,8 @@ public class CameraController : MonoBehaviour
     {
         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
 
-        transform.position = 
-        new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
     }
 
-    private void Singleton() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            if (instance != this) {
-                Destroy(gameObject);
-            }
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
 }
