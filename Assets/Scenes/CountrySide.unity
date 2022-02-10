@@ -13099,10 +13099,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3478481237002393697, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
-      propertyPath: fadeSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3478481237002393700, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
       propertyPath: m_Name
       value: UI Canvas

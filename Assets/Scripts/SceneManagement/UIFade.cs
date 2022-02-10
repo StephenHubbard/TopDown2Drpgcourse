@@ -13,8 +13,6 @@ public class UIFade : MonoBehaviour
     private bool shouldFadeToBlack;
     private bool shouldFadeFromBlack;
     
-    // private IEnumerator currentCo
-
     private void Awake() {
         if (instance == null) {
             instance = this;

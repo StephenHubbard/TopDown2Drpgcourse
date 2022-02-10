@@ -27,7 +27,9 @@ public class AttackDamage : MonoBehaviour
     }
 
     private void PlayerSelfDamage(Collider2D other) {
+        // to prevent a damage instance from your own sword
         if (isSword) { return; }
+        
         if (other.gameObject.CompareTag("Player")) {
             other.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
             other.GetComponent<PlayerHealth>().KnockBack(transform);

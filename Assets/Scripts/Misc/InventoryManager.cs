@@ -15,29 +15,16 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Image activeSpriteUI;
     [SerializeField] public GameObject inventoryContainer;
 
-    [SerializeField] public GameObject boomerangPrefabInv;
-    [SerializeField] public GameObject bombPrefabInv;
-    [SerializeField] public GameObject itemEquippedInv;
-
     public static InventoryManager instance;
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
+    public GameObject itemEquippedInv;
 
 
     private PlayerControls playerControls;
 
 
-    private void OpenInventoryContainer() {
-        if (inventoryContainer.gameObject.activeInHierarchy == false) {
-            inventoryContainer.gameObject.SetActive(true);
-            PlayerController.instance.PauseGame();
-        }
-
-        else if (inventoryContainer.gameObject.activeInHierarchy == true) {
-            inventoryContainer.gameObject.SetActive(false);
-            PlayerController.instance.UnpauseGame();
-        }
-    }
+    
 
     private void Awake() {
         playerControls = new PlayerControls();
@@ -74,6 +61,18 @@ public class InventoryManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OpenInventoryContainer() {
+        if (inventoryContainer.gameObject.activeInHierarchy == false) {
+            inventoryContainer.gameObject.SetActive(true);
+            PlayerController.instance.PauseGame();
+        }
+
+        else if (inventoryContainer.gameObject.activeInHierarchy == true) {
+            inventoryContainer.gameObject.SetActive(false);
+            PlayerController.instance.UnpauseGame();
+        }
+    }
+
     private void UpdateDetectIfItemChange(){
         if (currentSelectedItem != eventSystem.currentSelectedGameObject || currentSelectedItem == null) {
             currentSelectedItem = eventSystem.currentSelectedGameObject;
@@ -88,11 +87,11 @@ public class InventoryManager : MonoBehaviour
 
         if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Boomerang") {
             currentEquippedItem = CurrentEquippedItem.Boomerang;
-            itemEquippedInv = boomerangPrefabInv;
         } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
             currentEquippedItem = CurrentEquippedItem.Bomb;
-            itemEquippedInv = bombPrefabInv;
         } 
+
+        itemEquippedInv = currentSelectedItem.GetComponent<ItemDisplay>().item.useItemPrefab;
     }
 
     private void updateSelectionBorder() {

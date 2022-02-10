@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Bottom;
     [SerializeField] private GameObject hitBox_Left;
     [SerializeField] private GameObject hitBox_Right;
-    [SerializeField] public GameObject boomerangPrefab;
-    [SerializeField] public GameObject bombPrefab;
     [SerializeField] public GameObject itemEquipped;
 
     public static PlayerController instance;
@@ -155,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
         itemEquipped = InventoryManager.instance.itemEquippedInv;
 
-        if (itemEquipped == bombPrefab) {
+        if (InventoryManager.instance.currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
             itemInUse = false;
         }
 

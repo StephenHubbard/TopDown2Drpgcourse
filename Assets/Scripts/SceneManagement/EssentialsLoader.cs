@@ -18,6 +18,7 @@ public class EssentialsLoader : MonoBehaviour
         if(PlayerController.instance == null) {
             PlayerController clone = Instantiate(player).GetComponent<PlayerController>();
             PlayerController.instance = clone;
+            // Can place in any scene to set the spawn point of our Hero
             if (FindObjectOfType<FountainRespawn>()) {
                 clone.transform.position = FindObjectOfType<FountainRespawn>().respawnPoint.transform.position;
             }
@@ -28,8 +29,4 @@ public class EssentialsLoader : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
 }
