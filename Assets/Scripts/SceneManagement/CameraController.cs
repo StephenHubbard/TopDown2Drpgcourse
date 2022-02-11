@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
 
     [SerializeField] private Transform player;
     [SerializeField] private Tilemap theMap;
-
-    public static CameraController instance;
 
     private Vector3 bottomLeftLimit;
     private Vector3 topRightLimit;
     private float halfHeight;
     private float halfWidth;
 
-    private void Awake() {
-        Singleton();
-    }
-
     private void Start() {
         if (FindObjectOfType<PlayerController>()) {
-            player = PlayerController.instance.transform;
+            player = PlayerController.Instance.transform;
         }
         theMap = GameObject.Find("Ground").GetComponent<Tilemap>();
 
@@ -37,20 +31,10 @@ public class CameraController : MonoBehaviour
         FindPlayer();
     }
 
-    private void Singleton() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            if (instance != this) {
-                Destroy(gameObject);
-            }
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void FindPlayer() {
         if (player == null) {
-            player = PlayerController.instance.transform;
+            player = PlayerController.Instance.transform;
         }
 
         if (theMap == null) {

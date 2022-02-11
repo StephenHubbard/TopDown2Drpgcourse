@@ -2987,30 +2987,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7202665266341285265, guid: 43ab30e39b184064da4ee8188856257b, type: 3}
   m_PrefabInstance: {fileID: 1882888607}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1911810882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7680889227704313398, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
-  m_PrefabInstance: {fileID: 7680889228424030266}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1911810883
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911810882}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a34a9a75821fa064b8537a0fd2a9dbd2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1946675382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2813365576304866350, guid: 966ba6d4c7edd5a48afb35589c5d8722, type: 3}
@@ -3623,7 +3599,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cameras
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5124208209353320697, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
 --- !u!1001 &5267928669031622231
 PrefabInstance:
@@ -30707,21 +30684,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1785677650}
     m_Modifications:
-    - target: {fileID: 75108251563699674, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7680889227704313396, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7680889227704313396, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.44
+      value: 15.23
       objectReference: {fileID: 0}
     - target: {fileID: 7680889227704313396, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.13
+      value: -9.11
       objectReference: {fileID: 0}
     - target: {fileID: 7680889227704313396, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30758,14 +30731,6 @@ PrefabInstance:
     - target: {fileID: 7680889227704313398, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
       propertyPath: m_Name
       value: NPC_Baldwin
-      objectReference: {fileID: 0}
-    - target: {fileID: 7680889227704313399, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 8858160996040930291, guid: 4998a1d64fa9ff64496b205bc6609d6b, type: 3}
-    - target: {fileID: 7680889227704313399, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e12727111f6dfcd4abe61f4efedb77d0, type: 3}

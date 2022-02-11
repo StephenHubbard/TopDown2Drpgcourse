@@ -129,6 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 82118707}
+  - component: {fileID: 5360977101354996219}
   m_Layer: 5
   m_Name: HeartContainer
   m_TagString: Untagged
@@ -161,6 +162,21 @@ RectTransform:
   m_AnchoredPosition: {x: -271.19974, y: -44}
   m_SizeDelta: {x: -542.3995, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5360977101354996219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82118706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04db664feb7e9144fb9baa1432ffa6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts: []
+  fullHeart: {fileID: 21300000, guid: 2a4a90d47b10503499786d5a1fc77242, type: 3}
+  emptyHeart: {fileID: 21300000, guid: 67595e8f0b5b00e49b85bb11b4df1e81, type: 3}
 --- !u!1 &92689558
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700557130}
+  - component: {fileID: 7497585239081753476}
   m_Layer: 5
   m_Name: RupeeContainer
   m_TagString: Untagged
@@ -646,6 +663,20 @@ RectTransform:
   m_AnchoredPosition: {x: -151.0721, y: -33.5463}
   m_SizeDelta: {x: 74.1443, y: 67.0927}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7497585239081753476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700557129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b2e072a39c91b4abbd1728c4e15830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRupees: 0
+  rupeeText: {fileID: 2103015648}
 --- !u!1 &770904824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2941,6 @@ GameObject:
   - component: {fileID: 3478481237002393698}
   - component: {fileID: 3478481237002393701}
   - component: {fileID: 3478481237002393697}
-  - component: {fileID: 1282063653}
   - component: {fileID: 1540238765}
   - component: {fileID: 1745005050}
   m_Layer: 5
@@ -3021,22 +3051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSpeed: 1
   fadeScreen: {fileID: 3478481236837958037}
---- !u!114 &1282063653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3478481237002393700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90bf34c5fc14854d8a3b4b5ff07a229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 1242931486}
-  dialogueText: {fileID: 1583575459}
-  nameBox: {fileID: 1445953629}
-  nameText: {fileID: 2146965201}
 --- !u!114 &1540238765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,10 +3065,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLine: 0
   dialogueBox: {fileID: 1242931486}
-  justStarted: 0
   dialogueText: {fileID: 1583575461}
   nameText: {fileID: 2146965203}
   nameBox: {fileID: 1445953629}
+  justStarted: 0
 --- !u!114 &1745005050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3067,8 +3081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15dae35683ed0c9429e139df223620a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRupees: 0
-  rupeeText: {fileID: 2103015648}
   selectionBorder: {fileID: 1951807320}
   currentSelectedItem: {fileID: 0}
   eventSystem: {fileID: 1247300986}

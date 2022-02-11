@@ -15,13 +15,13 @@ public class AreaEntrance : MonoBehaviour
     }
 
     private void Start() {
-        if (PlayerController.instance != null) {
-            if (transitionName == PlayerController.instance.areaTransitionName) {
-                PlayerController.instance.transform.position = transform.position;
-                StartCoroutine(HeroMoveDelay());
+        if (PlayerController.Instance != null) {
+            if (transitionName == PlayerController.Instance.areaTransitionName) {
+                PlayerController.Instance.transform.position = transform.position;
+                StartCoroutine(HeroMoveDelayRoutine());
 
-                if (UIFade.instance != null) {
-                    UIFade.instance.FadeToClear();
+                if (UIFade.Instance != null) {
+                    UIFade.Instance.FadeToClear();
                 }
             }
         }
@@ -29,7 +29,7 @@ public class AreaEntrance : MonoBehaviour
         
     }
 
-    private IEnumerator HeroMoveDelay() {
+    private IEnumerator HeroMoveDelayRoutine() {
         playerController.canMove = false;
         yield return new WaitForSeconds(moveSpeedWaitTime);
         playerController.canMove = true;

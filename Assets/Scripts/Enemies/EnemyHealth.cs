@@ -23,10 +23,13 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void Update() {
+        DetectDeath();
     }
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
+        spriteRenderer.material = matWhiteFlash;
+        StartCoroutine(SetDefaultMatRoutine(.1f));
     }
 
     private void DetectDeath() {
@@ -36,20 +39,9 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void KnockBack(float knockbackTime, Transform damageSource, float thrust) {
-            spriteRenderer.material = matWhiteFlash;
-            GetComponent<EnemyMovement>().canMove = false;
-            Vector2 difference = transform.position - damageSource.position;
-            difference = difference.normalized * thrust;
-            rb.AddForce(difference, ForceMode2D.Impulse);
-            StartCoroutine(KnockCo(knockbackTime));
+    private IEnumerator SetDefaultMatRoutine(float whiteFlashTime) {
+        yield return new WaitForSeconds(whiteFlashTime);
+        spriteRenderer.material = matDefault;
     }
 
-    private IEnumerator KnockCo(float knockbackTime) {
-        yield return new WaitForSeconds(knockbackTime);
-        rb.velocity = Vector2.zero;
-        GetComponent<EnemyMovement>().canMove = true;
-        spriteRenderer.material = matDefault;
-        DetectDeath();
-    }
 }

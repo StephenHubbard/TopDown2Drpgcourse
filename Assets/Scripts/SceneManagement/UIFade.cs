@@ -3,27 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFade : MonoBehaviour
+public class UIFade : Singleton<UIFade>
 {
     [SerializeField] private float fadeSpeed;
 
     public Image fadeScreen;
-    public static UIFade instance;
 
     private bool shouldFadeToBlack;
     private bool shouldFadeFromBlack;
-    
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            if (instance != this) {
-                Destroy(gameObject);
-            }
-        }
 
-        DontDestroyOnLoad(gameObject);
-    }
+    private IEnumerator fadeCo;
+    
 
     void Start() {
         FadeToClear();
@@ -31,18 +21,25 @@ public class UIFade : MonoBehaviour
     
     public void FadeToBlack() 
     {
-        // StopAllCoroutines in case of overlap, stalling out the image alpha
-        StopAllCoroutines();
-        StartCoroutine(Fade(fadeScreen, 1));
+        if (fadeCo != null) {
+            StopCoroutine(fadeCo);
+        }
+
+        fadeCo = FadeRoutine(fadeScreen, 1);
+        StartCoroutine(fadeCo);
     }
     
     public void FadeToClear()
     {
-        StopAllCoroutines();
-        StartCoroutine(Fade(fadeScreen, 0));
+        if (fadeCo != null) {
+            StopCoroutine(fadeCo);
+        }
+        
+        fadeCo = FadeRoutine(fadeScreen, 0);
+        StartCoroutine(fadeCo);
     }
     
-    IEnumerator Fade(Image image, float targetAlpha)
+    IEnumerator FadeRoutine(Image image, float targetAlpha)
     {
         while(!Mathf.Approximately(image.color.a, targetAlpha))
         {

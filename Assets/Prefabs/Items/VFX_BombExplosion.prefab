@@ -9613,3 +9613,4 @@ MonoBehaviour:
   knockbackTime: 0.2
   thrust: 25
   isSword: 0
+  isBomb: 1

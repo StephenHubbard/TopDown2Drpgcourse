@@ -48,6 +48,7 @@ MonoBehaviour:
   knockbackTime: 0.1
   thrust: 15
   isSword: 1
+  isBomb: 0
 --- !u!70 &2028781572
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -61,8 +62,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1836815, y: 0.31767553}
-  m_Size: {x: 3.0836318, y: 1.3842266}
+  m_Offset: {x: 0.1836815, y: 0.19145375}
+  m_Size: {x: 3.0836315, y: 1.6366713}
   m_Direction: 1
 --- !u!1 &3204290679261957779
 GameObject:
@@ -112,6 +113,7 @@ MonoBehaviour:
   knockbackTime: 0.1
   thrust: 15
   isSword: 1
+  isBomb: 0
 --- !u!70 &291222085
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,8 +127,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24199893, y: 0.019462429}
-  m_Size: {x: 3.4442527, y: 1.3855287}
+  m_Offset: {x: -0.188941, y: -0.10303368}
+  m_Size: {x: 3.550373, y: 1.6305238}
   m_Direction: 1
 --- !u!1 &3220950305806715719
 GameObject:
@@ -143,6 +145,7 @@ GameObject:
   - component: {fileID: 840931592103326332}
   - component: {fileID: 4623108702516294298}
   - component: {fileID: 3767891345360618192}
+  - component: {fileID: -342634711833211619}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -278,8 +281,6 @@ MonoBehaviour:
   hitBox_Bottom: {fileID: 3204290679261957779}
   hitBox_Left: {fileID: 3793794338662628057}
   hitBox_Right: {fileID: 3097621460701527088}
-  boomerangPrefab: {fileID: 6931813539865642202, guid: 44078b1c7ff048c40882e19941ec4a84, type: 3}
-  bombPrefab: {fileID: 3738896221014978246, guid: ee5cb56f82b76d346a1f29d6b774abfc, type: 3}
   itemEquipped: {fileID: 0}
   canAttack: 1
   canMove: 1
@@ -322,8 +323,6 @@ MonoBehaviour:
   whiteFlashMat: {fileID: 2100000, guid: 52c6cabe18a9a1d42bbf7e7ad4930379, type: 2}
   whiteFlashTime: 0.1
   damageRecoveryTime: 0.5
-  knockBackThrust: 15
-  knockbackTime: 0.15
   hearts:
   - {fileID: 0}
   - {fileID: 0}
@@ -333,6 +332,20 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 2a4a90d47b10503499786d5a1fc77242, type: 3}
   emptyHeart: {fileID: 21300000, guid: 67595e8f0b5b00e49b85bb11b4df1e81, type: 3}
+--- !u!114 &-342634711833211619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220950305806715719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b730a0ad1dac7154b9803815f5f1059e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackThrust: 15
+  knockbackTime: 0.15
 --- !u!1 &3793794338662628057
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +394,7 @@ MonoBehaviour:
   knockbackTime: 0.1
   thrust: 15
   isSword: 1
+  isBomb: 0
 --- !u!70 &722147203
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -394,8 +408,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.7051948, y: 0.2399085}
-  m_Size: {x: 3.221414, y: 1.6928955}
+  m_Offset: {x: -1.7051951, y: 0.15620005}
+  m_Size: {x: 3.2214148, y: 1.8603129}
   m_Direction: 1
 --- !u!1 &4705865571609836262
 GameObject:
@@ -445,6 +459,7 @@ MonoBehaviour:
   knockbackTime: 0.1
   thrust: 15
   isSword: 1
+  isBomb: 0
 --- !u!70 &1090611170
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -458,6 +473,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7639517, y: 1.2886648}
-  m_Size: {x: 3.921702, y: 1.5724438}
+  m_Offset: {x: 0.7639514, y: 1.4265678}
+  m_Size: {x: 3.9217014, y: 1.8482499}
   m_Direction: 1

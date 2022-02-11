@@ -19,6 +19,6 @@ public class PickUp : MonoBehaviour
     }
 
     private void PickUpRupee() {
-        InventoryManager.instance.IncreaseRupeeCount(1);
+        FindObjectOfType<RupeeWallet>().IncreaseRupeeCount(1);
     }
 }

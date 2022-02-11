@@ -30,9 +30,9 @@ public class AreaExit : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             shouldLoadAfterFade = true;
-            UIFade.instance.FadeToBlack();
+            UIFade.Instance.FadeToBlack();
 
-            PlayerController.instance.areaTransitionName = areaTransitionName;
+            PlayerController.Instance.areaTransitionName = areaTransitionName;
         }
     }
 }

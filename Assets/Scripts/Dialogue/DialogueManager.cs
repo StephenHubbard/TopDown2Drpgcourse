@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : Singleton<DialogueManager>
 {
     [SerializeField] private int currentLine;
     [SerializeField] public GameObject dialogueBox;
@@ -12,55 +12,33 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [SerializeField] GameObject nameBox;
 
-    public static DialogueManager instance;
     public bool justStarted;
-
 
     private string[] dialogueLines;
 
-    void Start()
+    public void ShowDialogueWindow()
     {
-        instance = this;
-
-    }
-
-    void Update()
-    {
-        ShowDialogueWindow();
-    }
-
-    private void ShowDialogueWindow()
-    {
-        if (dialogueBox != null) {
-            if (dialogueBox.activeInHierarchy)
+        if (!justStarted)
+        {
+        currentLine++;
+            if (currentLine >= dialogueLines.Length)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (!justStarted)
-                    {
-                    currentLine++;
-                        if (currentLine >= dialogueLines.Length)
-                        {
-                            dialogueBox.SetActive(false);
-                            justStarted = true;
-                            PlayerController.instance.canMove = true;
-                            PlayerController.instance.canAttack = true;
-                        }
-                        else
-                        {
-                            CheckIfName();
-                            dialogueText.text = dialogueLines[currentLine];
-                        }
-                        }
-                        else
-                        {
-                            justStarted = false;
-                        }
-                }
+                dialogueBox.SetActive(false);
+                justStarted = true;
+                PlayerController.Instance.canMove = true;
+                PlayerController.Instance.canAttack = true;
             }
-        } 
+            else
+            {
+                CheckIfName();
+                dialogueText.text = dialogueLines[currentLine];
+            }
+        }
+        else
+        {
+            justStarted = false;
+        }
     }
-
     
     public void ShowDialogue(string[] newLines, bool isPerson) {
         justStarted = true;
@@ -70,7 +48,8 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive(true);
         nameBox.SetActive(isPerson);
-        PlayerController.instance.canMove = false;
+        PlayerController.Instance.canMove = false;
+        ShowDialogueWindow();
     }
 
     public void CheckIfName() {

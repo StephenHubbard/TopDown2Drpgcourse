@@ -5,31 +5,24 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : Singleton<InventoryManager>
 {
-    [SerializeField] public int currentRupees;
-    [SerializeField] private TMP_Text rupeeText;
     [SerializeField] private GameObject selectionBorder;
     [SerializeField] public GameObject currentSelectedItem;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private Image activeSpriteUI;
     [SerializeField] public GameObject inventoryContainer;
 
-    public static InventoryManager instance;
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
     public GameObject itemEquippedInv;
 
-
     private PlayerControls playerControls;
-
-
     
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         playerControls = new PlayerControls();
-
-        Singleton();
     }
 
     private void Start() {
@@ -41,35 +34,25 @@ public class InventoryManager : MonoBehaviour
     }
 
     private void OnDisable() {
-        playerControls.Disable();
+        if (playerControls != null) {
+            playerControls.Disable();
+        }
     }
 
     private void Update() {
-        UpdateRupeeText();
         UpdateDetectIfItemChange();
     }
     
 
-    private void Singleton() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            if (instance != this) {
-                Destroy(gameObject);
-            }
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-
     private void OpenInventoryContainer() {
         if (inventoryContainer.gameObject.activeInHierarchy == false) {
             inventoryContainer.gameObject.SetActive(true);
-            PlayerController.instance.PauseGame();
+            PlayerController.Instance.PauseGame();
         }
 
         else if (inventoryContainer.gameObject.activeInHierarchy == true) {
             inventoryContainer.gameObject.SetActive(false);
-            PlayerController.instance.UnpauseGame();
+            PlayerController.Instance.UnpauseGame();
         }
     }
 
@@ -83,26 +66,20 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void ChangeCurrentEquippedItem() {
-        if (!currentSelectedItem.GetComponent<ItemDisplay>()) { return; }
+        ItemDisplay thisItem = currentSelectedItem.GetComponent<ItemDisplay>();
+        
+        if (!thisItem) { return; }
 
-        if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Boomerang") {
+        if (thisItem.item.itemType == "Boomerang") {
             currentEquippedItem = CurrentEquippedItem.Boomerang;
-        } else if (currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
+        } else if (thisItem.item.itemType == "Bomb") {
             currentEquippedItem = CurrentEquippedItem.Bomb;
         } 
 
-        itemEquippedInv = currentSelectedItem.GetComponent<ItemDisplay>().item.useItemPrefab;
+        itemEquippedInv = thisItem.item.useItemPrefab;
     }
 
     private void updateSelectionBorder() {
         selectionBorder.transform.position = currentSelectedItem.transform.position;
-    }
-
-    public void UpdateRupeeText() {
-        rupeeText.text = currentRupees.ToString("D3");
-    }
-
-    public void IncreaseRupeeCount(int amount) {
-        currentRupees += amount;
     }
 }

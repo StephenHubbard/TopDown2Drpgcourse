@@ -7,7 +7,6 @@ public class Boomerang : MonoBehaviour
     [SerializeField] private float spinSpeed = 100f;
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private float throwSpeed = 40f;
-    [SerializeField] private Collider2D circleCollider;
     [SerializeField] private int boomerangDamage = 1;
     [SerializeField] private float knockbackTime = .1f;
     [SerializeField] private float thrust = 15f;
@@ -18,7 +17,6 @@ public class Boomerang : MonoBehaviour
 
     private void Awake() {
         player = FindObjectOfType<PlayerController>();
-        circleCollider = GetComponent<Collider2D>();
     }
 
     private void Start() {
@@ -75,12 +73,12 @@ public class Boomerang : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         goForward = false;
-        // returns to player without bumping into things
-        circleCollider.enabled = false;
+        EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();
 
-        if (other.gameObject.CompareTag("Enemy")) {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(boomerangDamage);
-            other.gameObject.GetComponent<EnemyHealth>().KnockBack(knockbackTime, player.transform, thrust);
+        if (enemy) {
+            enemy.TakeDamage(boomerangDamage);
+            other.gameObject.GetComponent<KnockBack>().getKnockedBack(transform, thrust);
         }
+
     }
 }

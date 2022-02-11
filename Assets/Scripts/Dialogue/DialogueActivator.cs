@@ -34,10 +34,14 @@ public class DialogueActivator : MonoBehaviour
     }
 
     private void OpenDialogue() {
-        if(canActivate && !DialogueManager.instance.dialogueBox.activeInHierarchy) {
-            DialogueManager.instance.ShowDialogue(lines, isPerson);
-            PlayerController.instance.canAttack = false;
-            PlayerController.instance.DialogueStopMove();
+        if (canActivate) {
+            if(!DialogueManager.Instance.dialogueBox.activeInHierarchy) {
+                DialogueManager.Instance.ShowDialogue(lines, isPerson);
+                PlayerController.Instance.canAttack = false;
+                PlayerController.Instance.DialogueStopMove();
+            } else {
+                DialogueManager.Instance.ShowDialogueWindow();
+            }
         }
     }
 

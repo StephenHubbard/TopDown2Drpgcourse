@@ -7,17 +7,12 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 3;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxHealth;
+    [SerializeField] public int currentHealth;
+    [SerializeField] public int maxHealth;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private Material whiteFlashMat;
     [SerializeField] private float whiteFlashTime = .1f;
     [SerializeField] private float damageRecoveryTime = 1f;
-    [SerializeField] private float knockBackThrust = 5f;
-    [SerializeField] private float knockbackTime = .5f;
-    [SerializeField] private Image[] hearts;
-    [SerializeField] private Sprite fullHeart;
-    [SerializeField] private Sprite emptyHeart;
     
     private Material defaultMat;
     private SpriteRenderer spriteRenderer;
@@ -32,66 +27,24 @@ public class PlayerHealth : MonoBehaviour
         defaultMat = spriteRenderer.material;
     }
 
-    private void Start() {
-        SetHeartsUI();
-    }
-
-    private void Update() {
-        UpdateHearthUI();
-    }
-
-    private void SetHeartsUI() {
-        Transform heartContainer = GameObject.Find("HeartContainer").transform;
-        
-        List<Image> allHearts = new List<Image>();
-
-        foreach (Transform child in heartContainer)
-        {
-            allHearts.Add(child.gameObject.GetComponent<Image>());
-        }
-
-        hearts = allHearts.ToArray();
-    }
-
-    
-
-    private void UpdateHearthUI() {
-        if (currentHealth > maxHealth){
-            currentHealth = maxHealth;
-        }
-
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < currentHealth) {
-                hearts[i].sprite = fullHeart;
-            } else {
-                hearts[i].sprite = emptyHeart;
-            }
-
-            if(i < maxHealth) {
-                hearts[i].enabled = true;
-            } else {
-                hearts[i].enabled = false;
-            }
-        }
-    }
 
     private void OnCollisionStay2D(Collision2D other) {
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage) {
-            TakeDamage(other.gameObject.GetComponent<EnemyMovement>().damageDoneToHero);
-            KnockBack(other.gameObject.transform);
+            EnemyMovement enemy = other.gameObject.GetComponent<EnemyMovement>();
+            TakeDamage(enemy.damageDoneToHero);
+            GetComponent<KnockBack>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
         }
     }
 
-    private void CheckIfDeath() {
+    public void CheckIfDeath() {
         if (currentHealth <= 0) {
-            PlayerController.instance.canMove = false;
-            PlayerController.instance.canAttack = false;
+            PlayerController.Instance.canMove = false;
+            PlayerController.Instance.canAttack = false;
             myAnimator.SetTrigger("dead");
-            StartCoroutine(RespawnCo());
+            StartCoroutine(RespawnRoutine());
         } else {
-            PlayerController.instance.canMove = true;
-            PlayerController.instance.canAttack = true;
+            PlayerController.Instance.canMove = true;
+            PlayerController.Instance.canAttack = true;
         }
     }
 
@@ -99,38 +52,25 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer.material = whiteFlashMat;
         currentHealth -= damage;
         canTakeDamage = false;
-        StartCoroutine(SetDefaultMatCo());
-        StartCoroutine(DamageRecoveryTimeCo());
+        StartCoroutine(SetDefaultMatRoutine());
+        StartCoroutine(DamageRecoveryTimeRoutine());
     }
 
-    private IEnumerator SetDefaultMatCo() {
+    private IEnumerator SetDefaultMatRoutine() {
         yield return new WaitForSeconds(whiteFlashTime);
         spriteRenderer.material = defaultMat;
     }
 
-    private IEnumerator DamageRecoveryTimeCo() {
+    private IEnumerator DamageRecoveryTimeRoutine() {
         yield return new WaitForSeconds(damageRecoveryTime);
         canTakeDamage = true;
     }
 
-    public void KnockBack(Transform damageSource) {
-        Vector2 difference = transform.position - damageSource.position;
-        difference = difference.normalized * knockBackThrust * rb.mass;
-        rb.AddForce(difference, ForceMode2D.Impulse);
-        PlayerController.instance.canMove = false;
-        StartCoroutine(KnockCo());
-    }
 
-    private IEnumerator KnockCo() {
-        yield return new WaitForSeconds(knockbackTime);
-        rb.velocity = Vector2.zero;
-        CheckIfDeath();
-    }
-
-    private IEnumerator RespawnCo() {
+    private IEnumerator RespawnRoutine() {
         yield return new WaitForSeconds(2f);
-        Destroy(PlayerController.instance.gameObject);
-        PlayerController.instance = null;
+        Destroy(PlayerController.Instance.gameObject);
+        // PlayerController.Instance = null;
         SceneManager.LoadScene("Town");
     }
 }

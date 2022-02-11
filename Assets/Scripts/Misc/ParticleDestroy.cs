@@ -8,11 +8,7 @@ public class ParticleDestroy : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DestroyGameObject());
+        Destroy(gameObject, waitTime);
     }
 
-    private IEnumerator DestroyGameObject() {
-        yield return new WaitForSeconds(waitTime);
-        Destroy(gameObject);
-    }
 }

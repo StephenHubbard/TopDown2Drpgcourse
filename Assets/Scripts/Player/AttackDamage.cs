@@ -6,20 +6,23 @@ public class AttackDamage : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 1;
     [SerializeField] private float knockbackTime;
+    [SerializeField] private float knockBackThrust = 15f;
     [SerializeField] private float thrust;
     [SerializeField] private bool isSword = false;
+    [SerializeField] private bool isBomb = false;
     
     private void OnTriggerEnter2D(Collider2D other) {
         EnemyAttack(other);
         PlayerSelfDamage(other);
         DestructibleAttack(other);
-        Cave(other);
+        DestroyBoulderBlockingCave(other);
     }
 
     private void EnemyAttack(Collider2D other) {
         if (other.gameObject.CompareTag("Enemy")) {
             other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
-            other.GetComponent<EnemyHealth>().KnockBack(knockbackTime, PlayerController.instance.transform, thrust);
+            other.GetComponent<KnockBack>().getKnockedBack(PlayerController.Instance.transform, knockBackThrust);
+
             if (isSword) {
                 gameObject.SetActive(false);
             }
@@ -29,10 +32,10 @@ public class AttackDamage : MonoBehaviour
     private void PlayerSelfDamage(Collider2D other) {
         // to prevent a damage instance from your own sword
         if (isSword) { return; }
-        
+
         if (other.gameObject.CompareTag("Player")) {
             other.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
-            other.GetComponent<PlayerHealth>().KnockBack(transform);
+            other.GetComponent<KnockBack>().getKnockedBack(transform, knockBackThrust);
         }
     }
 
@@ -42,9 +45,9 @@ public class AttackDamage : MonoBehaviour
         }
     }
 
-    private void Cave(Collider2D other) {
-        if (other.GetComponent<Cave>()) {
-            other.GetComponent<Cave>().DestroyCave();
+    private void DestroyBoulderBlockingCave(Collider2D other) {
+        if (other.GetComponent<Boulder>() && isBomb) {
+            other.GetComponent<Boulder>().DestroyCave();
         }
     }
 }

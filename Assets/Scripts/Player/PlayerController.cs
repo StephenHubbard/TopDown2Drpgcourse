@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hitBox_Right;
     [SerializeField] public GameObject itemEquipped;
 
-    public static PlayerController instance;
     public bool canAttack = true;
     public bool canMove = true;
     public bool itemInUse = false;
@@ -28,11 +27,9 @@ public class PlayerController : MonoBehaviour
 
     Vector2 movement;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         playerControls = new PlayerControls();
-
-        currentGameState = GameState.Playing;
-        Singleton();
     }
 
     private void OnEnable() {
@@ -49,22 +46,13 @@ public class PlayerController : MonoBehaviour
         playerControls.Movement.Run.canceled += _ => StopRun();
         playerControls.Combat.Attack.performed += _ => Attack();
         playerControls.RightClick.Use.performed += _ => UseItem();
+
+        currentGameState = GameState.Playing;
     }
 
     void Update()
     {
         PlayerInput();
-    }
-
-    private void Singleton() {
-        if (instance == null) {
-            instance = this;
-        } else {
-            if (instance != this) {
-                Destroy(gameObject);
-            }
-        }
-        DontDestroyOnLoad(gameObject);
     }
 
     public void DialogueStopMove() {
@@ -155,9 +143,9 @@ public class PlayerController : MonoBehaviour
 
         itemInUse = true;
 
-        itemEquipped = InventoryManager.instance.itemEquippedInv;
+        itemEquipped = InventoryManager.Instance.itemEquippedInv;
 
-        if (InventoryManager.instance.currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
+        if (InventoryManager.Instance.currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
             itemInUse = false;
         }
 

@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] public int damageDoneToHero = 1;
 
     public bool canMove = true;
+    public float enemyKnockBackThrust = 15f;
 
     private int xDir;
     private int yDir;
@@ -18,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 movement;
 
     private void Start() {
-        StartCoroutine(ChangeDirection());
+        StartCoroutine(ChangeDirectionRoutine());
     }
 
     private void Update() {
@@ -26,13 +27,13 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // random movement around map
-    private IEnumerator ChangeDirection() {
-        randomNum = Random.Range(-5, 5);
-        movement.x = Random.Range(-1, 2);
-        movement.y = Random.Range(-1, 2);
-        yield return new WaitForSeconds(randomNum);
-        StartCoroutine(ChangeDirection());
-
+    private IEnumerator ChangeDirectionRoutine() {
+        while (true) {
+            randomNum = Random.Range(-5, 5);
+            movement.x = Random.Range(-1, 2);
+            movement.y = Random.Range(-1, 2);
+            yield return new WaitForSeconds(randomNum);
+        }
     }
 
     private void Move() {
