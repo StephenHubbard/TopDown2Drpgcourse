@@ -8,12 +8,6 @@ public class AreaEntrance : MonoBehaviour
     
     public string transitionName;
 
-    private PlayerController playerController;
-
-    private void Awake() {
-        playerController = FindObjectOfType<PlayerController>();
-    }
-
     private void Start() {
         if (PlayerController.Instance != null) {
             if (transitionName == PlayerController.Instance.areaTransitionName) {
@@ -25,13 +19,11 @@ public class AreaEntrance : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     private IEnumerator HeroMoveDelayRoutine() {
-        playerController.canMove = false;
+        PlayerController.Instance.canMove = false;
         yield return new WaitForSeconds(moveSpeedWaitTime);
-        playerController.canMove = true;
+        PlayerController.Instance.canMove = true;
     }
 }

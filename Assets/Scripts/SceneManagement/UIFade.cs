@@ -13,7 +13,6 @@ public class UIFade : Singleton<UIFade>
     private bool shouldFadeFromBlack;
 
     private IEnumerator fadeCo;
-    
 
     void Start() {
         FadeToClear();

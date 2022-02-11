@@ -19,8 +19,6 @@ public class PlayerController : Singleton<PlayerController>
     public bool canMove = true;
     public bool itemInUse = false;
 
-
-    private bool isRunning = false;
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
     private PlayerControls playerControls;
@@ -37,7 +35,9 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void OnDisable() {
-        playerControls.Disable();
+        if (playerControls != null) {
+            playerControls.Disable();
+        }
     }
 
     void Start()
@@ -75,15 +75,11 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void StartRun() {
-        isRunning = true;
-        
         myAnimator.SetBool("isRunning", true);
         moveSpeed += runSpeed;
     }
 
     private void StopRun() {
-        isRunning = true;
-
         myAnimator.SetBool("isRunning", false);
         moveSpeed -= runSpeed;
     }
@@ -139,27 +135,30 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     public void SpawnItem() {
-        if (itemInUse) { return; }
-
-        itemInUse = true;
-
         itemEquipped = InventoryManager.Instance.itemEquippedInv;
 
-        if (InventoryManager.Instance.currentSelectedItem.GetComponent<ItemDisplay>().item.itemType == "Bomb") {
-            itemInUse = false;
-        }
+        if (itemInUse || !itemEquipped) { return; }
 
-        if (myAnimator.GetFloat("lastMoveX") == 1) {
-            Instantiate(itemEquipped, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
-        }
-        else if (myAnimator.GetFloat("lastMoveX") == -1) {
-            Instantiate(itemEquipped, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
-        }
-        else if (myAnimator.GetFloat("lastMoveY") == 1) {
-            Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
-        }
-        else if (myAnimator.GetFloat("lastMoveY") == -1) {
-            Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y - 1f), transform.rotation);
+        itemInUse = true;
+        ItemDisplay itemDisplay = InventoryManager.Instance.currentSelectedItem.GetComponent<ItemDisplay>();
+
+        if (itemDisplay) {
+            if (itemDisplay.item.itemType == "Bomb") {
+                itemInUse = false;
+            }
+
+            if (myAnimator.GetFloat("lastMoveX") == 1) {
+                Instantiate(itemEquipped, new Vector2(transform.position.x + 1, transform.position.y + 0.5f), transform.rotation);
+            }
+            else if (myAnimator.GetFloat("lastMoveX") == -1) {
+                Instantiate(itemEquipped, new Vector2(transform.position.x - 1, transform.position.y + 0.5f), transform.rotation);
+            }
+            else if (myAnimator.GetFloat("lastMoveY") == 1) {
+                Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation);
+            }
+            else if (myAnimator.GetFloat("lastMoveY") == -1) {
+                Instantiate(itemEquipped, new Vector2(transform.position.x, transform.position.y - 1f), transform.rotation);
+            }
         }
     }
 

@@ -27,11 +27,9 @@ public class HeartsUI : MonoBehaviour
     }
 
     private void SetHeartsUI() {
-        Transform heartContainer = GameObject.Find("HeartContainer").transform;
-        
         List<Image> allHearts = new List<Image>();
 
-        foreach (Transform child in heartContainer)
+        foreach (Transform child in transform)
         {
             allHearts.Add(child.gameObject.GetComponent<Image>());
         }

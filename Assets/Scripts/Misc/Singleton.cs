@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Singleton class can be inherited by other classes when needed
 public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
 
     static T instance;

@@ -16,6 +16,8 @@ public class EssentialsLoader : MonoBehaviour
             // Can place in any scene to set the spawn point of our hero in that scene
             if (FindObjectOfType<FountainRespawn>()) {
                 clone.transform.position = FindObjectOfType<FountainRespawn>().respawnPoint.transform.position;
+            } else {
+                clone.transform.position = FindObjectOfType<AreaEntrance>().transform.position;
             }
         }
 

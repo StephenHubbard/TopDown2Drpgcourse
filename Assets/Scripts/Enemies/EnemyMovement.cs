@@ -6,7 +6,6 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Animator myAnimator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] public int damageDoneToHero = 1;
 

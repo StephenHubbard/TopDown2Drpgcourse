@@ -8,7 +8,6 @@ public class AttackDamage : MonoBehaviour
     [SerializeField] private float knockbackTime;
     [SerializeField] private float knockBackThrust = 15f;
     [SerializeField] private float thrust;
-    [SerializeField] private bool isSword = false;
     [SerializeField] private bool isBomb = false;
     
     private void OnTriggerEnter2D(Collider2D other) {
@@ -23,16 +22,16 @@ public class AttackDamage : MonoBehaviour
             other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
             other.GetComponent<KnockBack>().getKnockedBack(PlayerController.Instance.transform, knockBackThrust);
 
-            if (isSword) {
-                gameObject.SetActive(false);
+            // for sword hitbox toggling
+            if (transform.parent) {
+                if (transform.parent.CompareTag("Player")) {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
 
     private void PlayerSelfDamage(Collider2D other) {
-        // to prevent a damage instance from your own sword
-        if (isSword) { return; }
-
         if (other.gameObject.CompareTag("Player")) {
             other.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
             other.GetComponent<KnockBack>().getKnockedBack(transform, knockBackThrust);

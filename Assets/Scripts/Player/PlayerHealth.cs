@@ -17,7 +17,9 @@ public class PlayerHealth : MonoBehaviour
     private Material defaultMat;
     private SpriteRenderer spriteRenderer;
     private bool canTakeDamage = true;
+    private bool isDead = false;
     private Rigidbody2D rb;
+
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
 
     private void OnCollisionStay2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Enemy") && canTakeDamage) {
+        if (other.gameObject.CompareTag("Enemy") && canTakeDamage && currentHealth > 0) {
             EnemyMovement enemy = other.gameObject.GetComponent<EnemyMovement>();
             TakeDamage(enemy.damageDoneToHero);
             GetComponent<KnockBack>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
@@ -37,7 +39,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void CheckIfDeath() {
-        if (currentHealth <= 0) {
+        if (currentHealth <= 0 && !isDead) {
+            // prevent death animation from triggering multiple times
+            isDead = true;
             PlayerController.Instance.canMove = false;
             PlayerController.Instance.canAttack = false;
             myAnimator.SetTrigger("dead");
@@ -70,7 +74,6 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator RespawnRoutine() {
         yield return new WaitForSeconds(2f);
         Destroy(PlayerController.Instance.gameObject);
-        // PlayerController.Instance = null;
         SceneManager.LoadScene("Town");
     }
 }

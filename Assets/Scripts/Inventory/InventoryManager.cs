@@ -68,15 +68,18 @@ public class InventoryManager : Singleton<InventoryManager>
     public void ChangeCurrentEquippedItem() {
         ItemDisplay thisItem = currentSelectedItem.GetComponent<ItemDisplay>();
         
-        if (!thisItem) { return; }
+        if (thisItem) { 
+            if (thisItem.item.itemType == "Boomerang") {
+                currentEquippedItem = CurrentEquippedItem.Boomerang;
+            } else if (thisItem.item.itemType == "Bomb") {
+                currentEquippedItem = CurrentEquippedItem.Bomb;
+            } 
 
-        if (thisItem.item.itemType == "Boomerang") {
-            currentEquippedItem = CurrentEquippedItem.Boomerang;
-        } else if (thisItem.item.itemType == "Bomb") {
-            currentEquippedItem = CurrentEquippedItem.Bomb;
-        } 
+            itemEquippedInv = thisItem.item.useItemPrefab;
+        } else {
+            itemEquippedInv = null;
+        }
 
-        itemEquippedInv = thisItem.item.useItemPrefab;
     }
 
     private void updateSelectionBorder() {

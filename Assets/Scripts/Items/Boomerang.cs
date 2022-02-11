@@ -8,7 +8,6 @@ public class Boomerang : MonoBehaviour
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private float throwSpeed = 40f;
     [SerializeField] private int boomerangDamage = 1;
-    [SerializeField] private float knockbackTime = .1f;
     [SerializeField] private float thrust = 15f;
     [SerializeField] private bool goForward = false;
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boulder : MonoBehaviour
 {
+    // Will only be destroyed by bomb.  See AttackDamage.cs
     public void DestroyCave() {
         Destroy(gameObject);
     }

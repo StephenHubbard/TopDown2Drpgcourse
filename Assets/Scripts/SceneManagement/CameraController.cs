@@ -31,6 +31,15 @@ public class CameraController : Singleton<CameraController>
         FindPlayer();
     }
 
+    void LateUpdate()
+    {
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), 
+            Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), 
+            transform.position.z);
+    }
 
     private void FindPlayer() {
         if (player == null) {
@@ -44,13 +53,5 @@ public class CameraController : Singleton<CameraController>
             topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
         }
     }
-
-    void LateUpdate()
-    {
-        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
-
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
-    }
-
 
 }
