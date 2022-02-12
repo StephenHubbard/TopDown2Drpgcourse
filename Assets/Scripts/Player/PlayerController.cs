@@ -28,6 +28,8 @@ public class PlayerController : Singleton<PlayerController>
 
     Vector2 movement;
 
+    #region Player Controls / Input Actions
+
     protected override void Awake() {
         // base.Awake() is called to apply our singleton inherited class, as well as anything else we want to set up in Awake()
         base.Awake();
@@ -54,14 +56,13 @@ public class PlayerController : Singleton<PlayerController>
         currentGameState = GameState.Playing;
     }
 
+    #endregion
+
+    #region  Player Movement / Game State Control
+
     void Update()
     {
         PlayerInput();
-    }
-
-    public void DialogueStopMove() {
-        myAnimator.SetFloat("moveX", 0f);
-        myAnimator.SetFloat("moveY", 0f);
     }
 
     public void toggleGameState() {
@@ -119,7 +120,24 @@ public class PlayerController : Singleton<PlayerController>
 
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
+
+        public void canMoveFunction() {
+        canMove = true;
+
+        hitBox_Left.SetActive(false);
+        hitBox_Right.SetActive(false);
+        hitBox_Bottom.SetActive(false);
+        hitBox_Top.SetActive(false);
+    }
+
+    public void DialogueStopMove() {
+        myAnimator.SetFloat("moveX", 0f);
+        myAnimator.SetFloat("moveY", 0f);
+    }
+
+    #endregion
     
+    #region Player Combat
 
     private void Attack() {
         if (canAttack && currentGameState != GameState.Paused) {
@@ -135,7 +153,6 @@ public class PlayerController : Singleton<PlayerController>
             canMove = false;
             myAnimator.SetTrigger("useItem");
         }
-
     }
 
     // SpawnItem() is called in our animator
@@ -167,16 +184,6 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    public void canMoveFunction() {
-        canMove = true;
-
-        hitBox_Left.SetActive(false);
-        hitBox_Right.SetActive(false);
-        hitBox_Bottom.SetActive(false);
-        hitBox_Top.SetActive(false);
-
-    }
-
     public void ActivateCollider() {
         if (myAnimator.GetFloat("lastMoveX") == -1) {
             hitBox_Left.SetActive(true);
@@ -192,4 +199,5 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    #endregion
 }
