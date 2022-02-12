@@ -43,6 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18798d713e0e1a54db56128f62af1488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraContainer: {fileID: 5124208209550561629, guid: 43a8c794f602ba142a52d2c6d1105cce, type: 3}
-  uiCanvas: {fileID: 3478481237002393700, guid: 6e29dc9e4ec42fc459cbffd08d059657, type: 3}
   player: {fileID: 3220950305806715719, guid: aed3df66be4c3c647911950749df62fe, type: 3}

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EssentialsLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject cameraContainer;
     [SerializeField] private GameObject player;
+    
+    private GameObject cameraContainer;
 
     void Start()
     {

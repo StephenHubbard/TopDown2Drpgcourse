@@ -85,4 +85,9 @@ public class InventoryManager : Singleton<InventoryManager>
     private void updateSelectionBorder() {
         selectionBorder.transform.position = currentSelectedItem.transform.position;
     }
+
+    // see EventSystemSpawner.cs
+    public void SetEventSystem(EventSystem newEventSystem) {
+        eventSystem = newEventSystem;
+    }
 }
