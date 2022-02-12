@@ -7,7 +7,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] public int damageDoneToHero = 1;
+    // Used in PlayerHealth collision with Enemies
+    [SerializeField] public int damageDoneToHero;
 
     public bool canMove = true;
     public float enemyKnockBackThrust = 15f;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Updates the UI on our canvas 
 public class HeartsUI : MonoBehaviour
 {
     [SerializeField] private Image[] hearts;

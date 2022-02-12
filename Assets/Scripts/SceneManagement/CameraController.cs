@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class CameraController : Singleton<CameraController>
 {
-
     [SerializeField] private Transform player;
     [SerializeField] private Tilemap theMap;
 

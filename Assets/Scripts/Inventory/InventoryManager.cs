@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// Updates UI based on event system's current selected object. 
 public class InventoryManager : Singleton<InventoryManager>
 {
     [SerializeField] private GameObject selectionBorder;

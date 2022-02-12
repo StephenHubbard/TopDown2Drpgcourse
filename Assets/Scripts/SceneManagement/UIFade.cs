@@ -12,6 +12,7 @@ public class UIFade : Singleton<UIFade>
     private bool shouldFadeToBlack;
     private bool shouldFadeFromBlack;
 
+    // We declare each coroutine to prevent any potential overlap using StopCoroutine
     private IEnumerator fadeCo;
 
     void Start() {

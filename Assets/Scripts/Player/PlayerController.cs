@@ -8,7 +8,9 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed = 4f;
     [SerializeField] private Animator myAnimator;
+    // For use of AreaExit and AreaEntrance scripts
     [SerializeField] public string areaTransitionName;
+    // The hitboxes of our 4 different sword directions
     [SerializeField] private GameObject hitBox_Top;
     [SerializeField] private GameObject hitBox_Bottom;
     [SerializeField] private GameObject hitBox_Left;
@@ -19,6 +21,7 @@ public class PlayerController : Singleton<PlayerController>
     public bool canMove = true;
     public bool itemInUse = false;
 
+    // GameState used to handle when Hero can take certain actions.  Could expand on this depending on if you wanted to add different player game handling states.
     private enum GameState { Playing, Paused};
     private GameState currentGameState;
     private PlayerControls playerControls;
@@ -26,6 +29,7 @@ public class PlayerController : Singleton<PlayerController>
     Vector2 movement;
 
     protected override void Awake() {
+        // base.Awake() is called to apply our singleton inherited class, as well as anything else we want to set up in Awake()
         base.Awake();
         playerControls = new PlayerControls();
     }
@@ -134,6 +138,7 @@ public class PlayerController : Singleton<PlayerController>
 
     }
 
+    // SpawnItem() is called in our animator
     public void SpawnItem() {
         itemEquipped = InventoryManager.Instance.itemEquippedInv;
 

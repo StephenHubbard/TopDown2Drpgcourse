@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void CheckIfDeath() {
         if (currentHealth <= 0 && !isDead) {
-            // prevent death animation from triggering multiple times
+            // isDead set to prevent death animation from triggering multiple times
             isDead = true;
             PlayerController.Instance.canMove = false;
             PlayerController.Instance.canAttack = false;

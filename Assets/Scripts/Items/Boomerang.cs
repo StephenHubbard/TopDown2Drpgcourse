@@ -22,10 +22,10 @@ public class Boomerang : MonoBehaviour
         FindPositionToThrow();
     }
 
+    // Finds a Vector2 position away from the player's current facing direction + throwDistance of the Boomerang
     private void FindPositionToThrow() {
         Animator playerAnimator = player.GetComponent<Animator>();
 
-        // slight offset to match player sprite animation(s).
         if (playerAnimator.GetFloat("lastMoveX") == 1) {
             locationToThrow = new Vector2(player.transform.position.x + throwDistance, player.transform.position.y);
         }
@@ -50,6 +50,7 @@ public class Boomerang : MonoBehaviour
         MoveBoomerang();
     }
 
+    // Once the Boomerang gets closes to the target locationToThrow position, the boomerang will turn around and head back towards the hero
     private void DetectDestination() {
         if (goForward && Vector2.Distance(locationToThrow, transform.position) < .5f) {
             goForward = false;
@@ -70,6 +71,7 @@ public class Boomerang : MonoBehaviour
         }
     }
 
+    // If the boomerang hits a collider before getting to it's targeted direction 
     private void OnCollisionEnter2D(Collision2D other) {
         goForward = false;
         EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();

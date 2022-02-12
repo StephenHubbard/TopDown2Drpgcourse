@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Knockback class can be put on gameobjects that you want to thrust back with rigidbody force against other objects that would typically deal damage
 public class KnockBack : MonoBehaviour
 {
     [SerializeField] private float knockbackTime;

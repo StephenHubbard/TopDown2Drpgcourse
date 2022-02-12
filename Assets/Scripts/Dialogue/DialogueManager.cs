@@ -40,6 +40,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
     
+    // newLines is passed through from the DialogueActivator class that calls this function
     public void ShowDialogue(string[] newLines, bool isPerson) {
         justStarted = true;
         dialogueLines = newLines;
@@ -52,6 +53,7 @@ public class DialogueManager : Singleton<DialogueManager>
         ShowDialogueWindow();
     }
 
+    // Can signify who's talking in the inspector
     public void CheckIfName() {
         if (dialogueLines[currentLine].StartsWith("n-")) {
             nameText.text = dialogueLines[currentLine].Replace("n-", "");

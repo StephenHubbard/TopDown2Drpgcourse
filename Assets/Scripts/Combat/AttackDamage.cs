@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// AttackDamage class can be put on any object with a trigger collider to set off different instances of damage.
 public class AttackDamage : MonoBehaviour
 {
-    [SerializeField] private int damageAmount = 1;
+    [SerializeField] private int damageAmount;
     [SerializeField] private float knockbackTime;
-    [SerializeField] private float knockBackThrust = 15f;
+    [SerializeField] private float knockBackThrust;
     [SerializeField] private float thrust;
-    [SerializeField] private bool isBomb = false;
+    [SerializeField] private bool isBombExplosion = false;
     
     private void OnTriggerEnter2D(Collider2D other) {
         EnemyAttack(other);
@@ -38,14 +39,16 @@ public class AttackDamage : MonoBehaviour
         }
     }
 
+    // Applies to bushes and pots
     private void DestructibleAttack(Collider2D other) {
         if (other.GetComponent<Breakable>()) {
             other.GetComponent<Breakable>().BreakObject();
         }
     }
 
+    // Cave will only be destroyed by the instance bomb explosion prefab
     private void DestroyBoulderBlockingCave(Collider2D other) {
-        if (other.GetComponent<Boulder>() && isBomb) {
+        if (other.GetComponent<Boulder>() && isBombExplosion) {
             other.GetComponent<Boulder>().DestroyCave();
         }
     }

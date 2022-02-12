@@ -10,7 +10,6 @@ public class EssentialsLoader : MonoBehaviour
 
     void Start()
     {
-
         if(PlayerController.Instance == null) {
             PlayerController clone = Instantiate(player).GetComponent<PlayerController>();
 
@@ -25,7 +24,5 @@ public class EssentialsLoader : MonoBehaviour
         if(CameraController.Instance == null) {
             Instantiate(cameraContainer).GetComponent<CameraController>();
         }
-
     }
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-// This class exists to remove multiple event systems spawning in each scene as only one can persist
+// This class exists to remove multiple Event Systems spawning in each scene as only one can exist in a given Scene
 public class EventSystemSpawner : MonoBehaviour 
 {
 
@@ -21,7 +21,5 @@ public class EventSystemSpawner : MonoBehaviour
             newEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(firstSelectedInvObject);
             FindObjectOfType<InventoryManager>().SetEventSystem(newEventSystem.GetComponent<EventSystem>());
         }
-
-        
     }
 }
