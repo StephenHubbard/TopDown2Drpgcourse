@@ -6,15 +6,25 @@ using TMPro;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
-    [SerializeField] private int currentLine;
-    [SerializeField] public GameObject dialogueBox;
-    [SerializeField] TMP_Text dialogueText;
-    [SerializeField] TMP_Text nameText;
-    [SerializeField] GameObject nameBox;
+    #region Public Variables 
 
+    [SerializeField] public GameObject dialogueBox;
     public bool justStarted;
 
+    #endregion
+
+    #region Private Variables
+
+    [SerializeField] private int currentLine;
+    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private GameObject nameBox;
     private string[] dialogueLines;
+    private const string startsWithSignifierString = "n-";
+
+    #endregion
+
+    #region Public Methods
 
     public void ShowDialogueWindow()
     {
@@ -55,9 +65,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
     // Can signify who's talking in the inspector
     public void CheckIfName() {
-        if (dialogueLines[currentLine].StartsWith("n-")) {
-            nameText.text = dialogueLines[currentLine].Replace("n-", "");
+        if (dialogueLines[currentLine].StartsWith(startsWithSignifierString)) {
+            nameText.text = dialogueLines[currentLine].Replace(startsWithSignifierString, "");
             currentLine++;
         }
     }
+
+    #endregion
 }

@@ -5,19 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class AreaExit : MonoBehaviour
 {
+    public AreaEntrance theEntrance;
+    public float waitToLoad = 1f;
+
     [SerializeField] private string areaToLoad;
     [SerializeField] private string areaTransitionName;
-
-    public AreaEntrance theEntrance;
-
-    public float waitToLoad = 1f;
-    private bool shouldLoadAfterFade;
+    private bool shouldLoadAfterFade; 
 
     private void Start() {
         theEntrance.transitionName = areaTransitionName;
     }
 
-    private void Update() {
+    private void Update() { 
         if(shouldLoadAfterFade) {
             waitToLoad -= Time.deltaTime;
             if(waitToLoad <= 0) {

@@ -5,13 +5,18 @@ using UnityEngine.Tilemaps;
 
 public class CameraController : Singleton<CameraController>
 {
+    #region Private Variables
+
     [SerializeField] private Transform player;
     [SerializeField] private Tilemap theMap;
-
     private Vector3 bottomLeftLimit;
     private Vector3 topRightLimit;
     private float halfHeight;
     private float halfWidth;
+
+    #endregion
+
+    #region Unity Methods
 
     private void Start() {
         if (FindObjectOfType<PlayerController>()) {
@@ -40,6 +45,10 @@ public class CameraController : Singleton<CameraController>
             transform.position.z);
     }
 
+    #endregion
+
+    #region Private Methods
+
     private void FindPlayer() {
         if (player == null) {
             player = PlayerController.Instance.transform;
@@ -53,4 +62,5 @@ public class CameraController : Singleton<CameraController>
         }
     }
 
+    #endregion
 }

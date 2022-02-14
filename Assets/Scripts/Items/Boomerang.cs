@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
+    #region Private Variables
+
     [SerializeField] private float spinSpeed = 100f;
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private float throwSpeed = 40f;
     [SerializeField] private int boomerangDamage = 1;
     [SerializeField] private float thrust = 15f;
     [SerializeField] private bool goForward = false;
-
     private PlayerController player;
     private Vector2 locationToThrow;
+
+    #endregion
+
+    #region Unity Methods
 
     private void Awake() {
         player = FindObjectOfType<PlayerController>();
@@ -21,6 +26,18 @@ public class Boomerang : MonoBehaviour
     private void Start() {
         FindPositionToThrow();
     }
+
+    void Update()
+    {
+        transform.Rotate(new Vector3(0f, 0f, spinSpeed) * Time.deltaTime);
+
+        DetectDestination();
+        MoveBoomerang();
+    }
+
+    #endregion
+
+    #region Private Methods
 
     // Finds a Vector2 position away from the player's current facing direction + throwDistance of the Boomerang
     private void FindPositionToThrow() {
@@ -41,14 +58,7 @@ public class Boomerang : MonoBehaviour
 
         goForward = true;
     }
-
-    void Update()
-    {
-        transform.Rotate(new Vector3(0f, 0f, spinSpeed) * Time.deltaTime);
-
-        DetectDestination();
-        MoveBoomerang();
-    }
+    
 
     // Once the Boomerang gets closes to the target locationToThrow position, the boomerang will turn around and head back towards the hero
     private void DetectDestination() {
@@ -80,6 +90,7 @@ public class Boomerang : MonoBehaviour
             enemy.TakeDamage(boomerangDamage);
             other.gameObject.GetComponent<KnockBack>().getKnockedBack(transform, thrust);
         }
-
     }
+
+    #endregion
 }

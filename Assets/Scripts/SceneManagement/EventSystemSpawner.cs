@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 // This class exists to remove multiple Event Systems spawning in each scene as only one can exist in a given Scene
 public class EventSystemSpawner : MonoBehaviour 
 {
-
     [SerializeField] private GameObject eventSystemprefab;
     [SerializeField] private GameObject firstSelectedInvObject;
     

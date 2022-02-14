@@ -5,12 +5,26 @@ using UnityEngine;
 // AttackDamage class can be put on any object with a trigger collider to set off different instances of damage.
 public class AttackDamage : MonoBehaviour
 {
+    #region Public Variables
+
+    // turned on in Bomb.cs script
+    public bool isBombExplosion = false;
+
+    #endregion
+
+    #region Private Variables
+
     [SerializeField] private int damageAmount;
     [SerializeField] private float knockbackTime;
     [SerializeField] private float knockBackThrust;
     [SerializeField] private float thrust;
-    [SerializeField] private bool isBombExplosion = false;
-    
+    private const string enemyString = "Enemy";
+    private const string playerString = "Player";
+
+    #endregion
+
+    #region Unity Methods
+
     private void OnTriggerEnter2D(Collider2D other) {
         EnemyAttack(other);
         PlayerSelfDamage(other);
@@ -18,14 +32,18 @@ public class AttackDamage : MonoBehaviour
         DestroyBoulderBlockingCave(other);
     }
 
+    #endregion
+
+    #region Private Methods
+
     private void EnemyAttack(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
+        if (other.gameObject.CompareTag(enemyString)) {
             other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
             other.GetComponent<KnockBack>().getKnockedBack(PlayerController.Instance.transform, knockBackThrust);
 
             // for sword hitbox toggling
             if (transform.parent) {
-                if (transform.parent.CompareTag("Player")) {
+                if (transform.parent.CompareTag(playerString)) {
                     gameObject.SetActive(false);
                 }
             }
@@ -33,7 +51,7 @@ public class AttackDamage : MonoBehaviour
     }
 
     private void PlayerSelfDamage(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag(playerString)) {
             other.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
             other.GetComponent<KnockBack>().getKnockedBack(transform, knockBackThrust);
         }
@@ -52,4 +70,6 @@ public class AttackDamage : MonoBehaviour
             other.GetComponent<Boulder>().DestroyCave();
         }
     }
+
+    #endregion
 }

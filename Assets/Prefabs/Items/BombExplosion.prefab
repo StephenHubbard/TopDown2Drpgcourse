@@ -9547,7 +9547,7 @@ GameObject:
   - component: {fileID: 6668007530506856425}
   - component: {fileID: 1133433549}
   m_Layer: 0
-  m_Name: VFX_BombExplosion
+  m_Name: BombExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9611,6 +9611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 3
   knockbackTime: 0.2
+  knockBackThrust: 0
   thrust: 25
-  isSword: 0
-  isBomb: 1
+  isBombExplosion: 0

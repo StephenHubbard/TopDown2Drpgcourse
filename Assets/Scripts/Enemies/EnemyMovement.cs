@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    #region Public Variables 
+
+    public bool canMove = true;
+    public float enemyKnockBackThrust = 15f;
+
+    #endregion
+
+    #region Private Variables
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private SpriteRenderer spriteRenderer;
     // Used in PlayerHealth collision with Enemies
     [SerializeField] public int damageDoneToHero;
-
-    public bool canMove = true;
-    public float enemyKnockBackThrust = 15f;
-
     private int xDir;
     private int yDir;
     private float randomNum;
     private Vector2 movement;
+
+    #endregion
 
     private void Start() {
         StartCoroutine(ChangeDirectionRoutine());
@@ -24,16 +31,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update() {
         Move();
-    }
-
-    // random movement around map
-    private IEnumerator ChangeDirectionRoutine() {
-        while (true) {
-            randomNum = Random.Range(-5, 5);
-            movement.x = Random.Range(-1, 2);
-            movement.y = Random.Range(-1, 2);
-            yield return new WaitForSeconds(randomNum);
-        }
     }
 
     private void Move() {
@@ -47,6 +44,16 @@ public class EnemyMovement : MonoBehaviour
         }
         else {
             spriteRenderer.flipX = false;
+        }
+    }
+
+    // random movement around map
+    private IEnumerator ChangeDirectionRoutine() {
+        while (true) {
+            randomNum = Random.Range(-5, 5);
+            movement.x = Random.Range(-1, 2);
+            movement.y = Random.Range(-1, 2);
+            yield return new WaitForSeconds(randomNum);
         }
     }
 

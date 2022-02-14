@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    #region Private Variables 
+
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private int currentHealth;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Material matWhiteFlash;
     [SerializeField] private GameObject deathVFX;
-
     private Material matDefault;
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
+
+    #endregion
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();

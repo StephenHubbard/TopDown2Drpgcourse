@@ -8,8 +8,10 @@ public class PickUp : MonoBehaviour
     public enum TypeOfPickUp{Rupee, Bomb};
     public TypeOfPickUp typeOfPickUp;
 
+    private const string playerString = "Player";
+
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag(playerString)) {
             Destroy(gameObject);
 
             if (typeOfPickUp == TypeOfPickUp.Rupee) {

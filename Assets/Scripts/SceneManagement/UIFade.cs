@@ -5,38 +5,38 @@ using UnityEngine.UI;
 
 public class UIFade : Singleton<UIFade>
 {
-    [SerializeField] private float fadeSpeed;
-
     public Image fadeScreen;
 
+    [SerializeField] private float fadeSpeed;
     private bool shouldFadeToBlack;
     private bool shouldFadeFromBlack;
+    // Declare each coroutine to prevent any potential overlap using StopCoroutine
+    private IEnumerator fadeRoutine;
 
-    // We declare each coroutine to prevent any potential overlap using StopCoroutine
-    private IEnumerator fadeCo;
-
-    void Start() {
-        FadeToClear();
+    void Start() { 
+        FadeToClear(); 
     }
     
+    // Used in Area Entrance/Exit Scripts
     public void FadeToBlack() 
     {
-        if (fadeCo != null) {
-            StopCoroutine(fadeCo);
+        if (fadeRoutine != null) {
+            StopCoroutine(fadeRoutine);
         }
 
-        fadeCo = FadeRoutine(fadeScreen, 1);
-        StartCoroutine(fadeCo);
+        fadeRoutine = FadeRoutine(fadeScreen, 1);
+        StartCoroutine(fadeRoutine);
     }
     
+    // Used in Area Entrance/Exit Scripts
     public void FadeToClear()
     {
-        if (fadeCo != null) {
-            StopCoroutine(fadeCo);
+        if (fadeRoutine != null) {
+            StopCoroutine(fadeRoutine);
         }
         
-        fadeCo = FadeRoutine(fadeScreen, 0);
-        StartCoroutine(fadeCo);
+        fadeRoutine = FadeRoutine(fadeScreen, 0);
+        StartCoroutine(fadeRoutine);
     }
     
     IEnumerator FadeRoutine(Image image, float targetAlpha)

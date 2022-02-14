@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-
     [SerializeField] private GameObject blue_rupee;
     [SerializeField] private enum ObjectType {pot, bush};
     [SerializeField] private ObjectType objectType;
@@ -17,7 +16,6 @@ public class Breakable : MonoBehaviour
     }
 
     private IEnumerator DelayDestroyRoutine(GameObject other) {
-
         switch (objectType) {
             case ObjectType.pot: 
                 Instantiate(blue_rupee, transform.position, Quaternion.identity);

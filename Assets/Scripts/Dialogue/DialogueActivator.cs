@@ -5,13 +5,23 @@ using UnityEngine;
 // Put on gameobjects that can be toggled with opening the dialogue window (currently spacebar).  If isPerson isn't toggled true, the name box window will not appear.
 public class DialogueActivator : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonUI;
+    #region Public Variables
 
     public string[] lines;
     public bool isPerson;
 
+    #endregion
+
+    #region Private Variables 
+
+    [SerializeField] private GameObject buttonUI;
     private bool canActivate;
     private PlayerControls playerControls;
+    private const string playerString = "Player";
+
+    #endregion
+
+    #region Unity Methods
 
     private void Awake() {
         playerControls = new PlayerControls();
@@ -30,9 +40,9 @@ public class DialogueActivator : MonoBehaviour
         playerControls.Spacebar.Use.performed += _ => OpenDialogue();
     }
 
-    void Update()
-    {
-    }
+    #endregion
+
+    #region Private Methods 
 
     private void OpenDialogue() {
         if (canActivate) {
@@ -47,16 +57,18 @@ public class DialogueActivator : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Player") {
+        if(other.tag == playerString) {
             buttonUI.SetActive(true);
             canActivate = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "Player") {
+        if(other.tag == playerString) {
             buttonUI.SetActive(false);
             canActivate = false;
         }
     }
+
+    #endregion
 }

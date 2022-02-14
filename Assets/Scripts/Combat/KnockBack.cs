@@ -6,8 +6,7 @@ using UnityEngine;
 public class KnockBack : MonoBehaviour
 {
     [SerializeField] private float knockbackTime;
-
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();

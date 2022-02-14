@@ -8,18 +8,28 @@ using UnityEngine.UI;
 // Updates UI based on event system's current selected object. 
 public class InventoryManager : Singleton<InventoryManager>
 {
-    [SerializeField] private GameObject selectionBorder;
-    [SerializeField] public GameObject currentSelectedItem;
-    [SerializeField] private EventSystem eventSystem;
-    [SerializeField] private Image activeSpriteUI;
-    [SerializeField] public GameObject inventoryContainer;
+    #region Public Variables
 
     public enum CurrentEquippedItem { Boomerang, Bomb };
     public CurrentEquippedItem currentEquippedItem;
     public GameObject itemEquippedInv;
 
+    #endregion
+
+    #region Private Variables 
+
+    [SerializeField] private GameObject selectionBorder;
+    [SerializeField] public GameObject currentSelectedItem;
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private Image activeSpriteUI;
+    [SerializeField] public GameObject inventoryContainer;
     private PlayerControls playerControls;
-    
+    private const string boomerangString = "Boomerang";
+    private const string bombString = "Bomb";
+
+    #endregion
+
+    #region Unity Methods
 
     protected override void Awake() {
         base.Awake();
@@ -43,7 +53,35 @@ public class InventoryManager : Singleton<InventoryManager>
     private void Update() {
         UpdateDetectIfItemChange();
     }
-    
+
+    #endregion
+
+    #region Public Methods
+
+    public void ChangeCurrentEquippedItem() {
+        ItemDisplay thisItem = currentSelectedItem.GetComponent<ItemDisplay>();
+        
+        if (thisItem) { 
+            if (thisItem.item.itemType == boomerangString) {
+                currentEquippedItem = CurrentEquippedItem.Boomerang;
+            } else if (thisItem.item.itemType == bombString) {
+                currentEquippedItem = CurrentEquippedItem.Bomb;
+            } 
+
+            itemEquippedInv = thisItem.item.useItemPrefab;
+        } else {
+            itemEquippedInv = null;
+        }
+    }
+
+    // see EventSystemSpawner.cs
+    public void SetEventSystem(EventSystem newEventSystem) {
+        eventSystem = newEventSystem;
+    }
+
+    #endregion
+
+    #region Private Methods
 
     private void OpenInventoryContainer() {
         if (inventoryContainer.gameObject.activeInHierarchy == false) {
@@ -66,29 +104,9 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    public void ChangeCurrentEquippedItem() {
-        ItemDisplay thisItem = currentSelectedItem.GetComponent<ItemDisplay>();
-        
-        if (thisItem) { 
-            if (thisItem.item.itemType == "Boomerang") {
-                currentEquippedItem = CurrentEquippedItem.Boomerang;
-            } else if (thisItem.item.itemType == "Bomb") {
-                currentEquippedItem = CurrentEquippedItem.Bomb;
-            } 
-
-            itemEquippedInv = thisItem.item.useItemPrefab;
-        } else {
-            itemEquippedInv = null;
-        }
-
-    }
-
     private void updateSelectionBorder() {
         selectionBorder.transform.position = currentSelectedItem.transform.position;
     }
 
-    // see EventSystemSpawner.cs
-    public void SetEventSystem(EventSystem newEventSystem) {
-        eventSystem = newEventSystem;
-    }
+    #endregion
 }

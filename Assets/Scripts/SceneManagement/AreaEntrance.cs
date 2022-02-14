@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AreaEntrance : MonoBehaviour
 {
-    [SerializeField] private float moveSpeedWaitTime = .5f;
-    
     public string transitionName;
 
-    private void Start() {
+    [SerializeField] private float moveSpeedWaitTime = .5f;
+
+    private void Start() {  
         if (PlayerController.Instance != null) {
             if (transitionName == PlayerController.Instance.areaTransitionName) {
                 PlayerController.Instance.transform.position = transform.position;

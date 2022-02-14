@@ -6,11 +6,16 @@ using UnityEngine.UI;
 // Updates the UI on our canvas 
 public class HeartsUI : MonoBehaviour
 {
+    #region Private Variables
+
     [SerializeField] private Image[] hearts;
     [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite emptyHeart;
+    private PlayerHealth player;
 
-    PlayerHealth player;
+    #endregion
+
+    #region Unity Methods
 
     private void Awake() {
     }
@@ -26,6 +31,10 @@ public class HeartsUI : MonoBehaviour
             player = FindObjectOfType<PlayerHealth>();
         }
     }
+
+    #endregion
+
+    #region Private Methods    
 
     private void SetHeartsUI() {
         List<Image> allHearts = new List<Image>();
@@ -61,4 +70,6 @@ public class HeartsUI : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

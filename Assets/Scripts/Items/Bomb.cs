@@ -8,7 +8,8 @@ public class Bomb : MonoBehaviour
 
     // Use in Bomb animation
     public void Explode() {
-        Instantiate(explodePrefab, transform.position, transform.rotation);
+        GameObject newBomb = Instantiate(explodePrefab, transform.position, transform.rotation);
+        newBomb.GetComponent<AttackDamage>().isBombExplosion = true;
         Destroy(gameObject);
     }
 }
